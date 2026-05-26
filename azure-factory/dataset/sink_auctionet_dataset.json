@@ -1,0 +1,22 @@
+{
+	"name": "sink_auctionet_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sink_auctionet",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('auctionet_data', formatDateTime(utcNow(), 'yyyyMMdd_HHmmss'), '.json')",
+					"type": "Expression"
+				},
+				"container": "raw"
+			}
+		},
+		"schema": {}
+	}
+}
