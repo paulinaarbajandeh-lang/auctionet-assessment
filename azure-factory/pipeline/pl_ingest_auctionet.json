@@ -49,6 +49,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"RunTrigger": {
+				"type": "string",
+				"defaultValue": "auctionet"
+			}
+		},
 		"annotations": []
 	}
 }

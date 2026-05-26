@@ -8,6 +8,9 @@
 				"pipelineReference": {
 					"referenceName": "pl_ingest_auctionet",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"RunTrigger": "auctionet"
 				}
 			}
 		],
