@@ -11,6 +11,9 @@
 		"ls_auctionet_properties_typeProperties_url": {
 			"value": "https://auctionet.com/api/v2/"
 		},
+		"tr_twice_a_day_properties_pl_ingest_auctionet_parameters_RunTrigger": {
+			"value": "auctionet"
+		},
 		"containerUri": {
 			"value": ""
 		},

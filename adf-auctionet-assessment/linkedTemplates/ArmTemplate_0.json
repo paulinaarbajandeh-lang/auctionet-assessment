@@ -14,6 +14,10 @@
 		"ls_auctionet_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://auctionet.com/api/v2/"
+		},
+		"tr_twice_a_day_properties_pl_ingest_auctionet_parameters_RunTrigger": {
+			"type": "string",
+			"defaultValue": "auctionet"
 		}
 	},
 	"variables": {
@@ -153,6 +157,12 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"parameters": {
+					"RunTrigger": {
+						"type": "string",
+						"defaultValue": "auctionet"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -173,7 +183,9 @@
 							"referenceName": "pl_ingest_auctionet",
 							"type": "PipelineReference"
 						},
-						"parameters": {}
+						"parameters": {
+							"RunTrigger": "[parameters('tr_twice_a_day_properties_pl_ingest_auctionet_parameters_RunTrigger')]"
+						}
 					}
 				],
 				"type": "ScheduleTrigger",
