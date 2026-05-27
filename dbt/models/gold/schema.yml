@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: dim_item
+    description: "Dimension table containing the latest static and semi-static attributes for each auction item."
+    columns:
+      - name: item_id
+        description: "Primary key for the item."
+        tests:
+          - unique
+          - not_null
+      - name: auction_id
+        description: "Identifier for the specific auction event."
+      - name: category_id
+        description: "Identifier for the item's category."
+      - name: title
+        description: "Title or name of the auctioned item."
+      - name: auction_type
+        description: "Type of the auction."
+      - name: published_at
+        description: "Timestamp when the auction was published."
+      - name: ends_at
+        description: "Timestamp when the auction is scheduled to end."
+
+  - name: dim_house
+    description: "Dimension table containing the latest organizational and location details for auction houses."
+    columns:
+      - name: company_id
+        description: "Primary key for the auction house/company."
+        tests:
+          - unique
+          - not_null
+      - name: house
+        description: "Name of the auction house."
+      - name: location
+        description: "Geographic location of the auction house."
+      - name: currency
+        description: "Currency used by this auction house."
+
+  - name: fact_auction_snapshot
+    description: "Fact table containing historical snapshots of bids, estimates, and states over time."
+    columns:
+      - name: item_id
+        description: "Foreign key linking to dim_item."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_item')
+                field: item_id
+      - name: company_id
+        description: "Foreign key linking to dim_house."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_house')
+                field: company_id
+      - name: load_timestamp
+        description: "The degenerate dimension representing the exact time this snapshot was captured."
+        tests:
+          - not_null
+      - name: state
+        description: "The current state of the auction at the time of the snapshot."
+      - name: hammered
+        description: "Boolean indicating if the item was hammered (sold) at the time of the snapshot."
+      - name: reserve_met
+        description: "Boolean indicating if the reserve price was met."
+      - name: reserve_amount
+        description: "The reserve price set for the item."
+      - name: estimate
+        description: "The estimated value of the item."
+      - name: starting_bid_amount
+        description: "The initial starting bid amount."
+      - name: next_bid_amount
+        description: "The required amount for the next valid bid at the time of the snapshot."
