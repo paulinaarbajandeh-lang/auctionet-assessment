@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: auctionet
+    database: DEV_SILVER
+    schema: AUCTIONET
+    description: "Silver layer containing historical snapshot data for Auctionet items."
+    tables:
+      - name: silver_auctionet
+        description: "Historical tracking table fed by the Snowflake stream and task pipeline."
+        columns:
+          - name: item_id
+            description: "Unique identifier for the auction item."
+            tests:
+              - not_null
+          - name: company_id
+            description: "Identifier for the auction house company."
+          - name: load_timestamp
+            description: "The specific snapshot timestamp when this row was captured."
+            tests:
+              - not_null
