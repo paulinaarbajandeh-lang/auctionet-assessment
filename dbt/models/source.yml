@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: bronze_auctionet
+    database: dbt_auctionet
+    schema: bronze
+    tables:
+      - name: raw_auctionet
+        description: "Raw append-only Snowflake table containing JSON objects ingested via Snowpipe."
