@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: dim_items
+    description: "Dimension table containing the single most recently ingested record for each individual auction item."
+    columns:
+      - name: item_id
+        description: "Primary key for the item. Guaranteed unique via row-ranking logic."
+        data_tests:
+          - unique
+          - not_null
+      - name: title
+        description: "Name/title of the item."
+      - name: description
+        description: "Cleaned text description of the item (HTML tags removed)."
+      - name: condition
+        description: "Cleaned condition text details (HTML tags removed)."
+
+  - name: dim_houses
+    description: "Dimension table containing unique auction house company profiles."
+    columns:
+      - name: company_id
+        description: "Primary key for the auction house company."
+        data_tests:
+          - unique
+          - not_null
+      - name: house_name
+        description: "Name of the auction house (e.g., Hälsinglands Auktionsverk)."
+      - name: location
+        description: "The physical city/location of the auction house."
+
+  - name: fct_auctions
+    description: "Fact table containing all financial metrics, timestamps, and active status states for each item's auction event."
+    columns:
+      - name: item_id
+        description: "Foreign key linking to dim_items."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_items')
+                field: item_id
+      - name: company_id
+        description: "Foreign key linking to dim_houses."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_houses')
+                field: company_id
+      - name: auction_id
+        description: "The specific identifier for the auction event."
+      - name: estimate
+        description: "The base estimated value of the item in its local currency."
+      - name: upper_estimate
+        description: "The maximum estimated value of the item."
+      - name: starting_bid_amount
+        description: "The starting bid required to enter the auction."
+      - name: reserve_met
+        description: "Boolean flag representing if the hidden reserve pricing threshold has been met."
+      - name: hammered
+        description: "Boolean flag representing if the item successfully sold ('hammered down')."
+      - name: published_at
+        description: "The regular timestamp when the auction item went live."
+      - name: ends_at
+        description: "The closing timestamp when the auction bidding period expires."
