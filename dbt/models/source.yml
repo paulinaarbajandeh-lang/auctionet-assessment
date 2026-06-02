@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: auctionet_raw
+    database: dbt_auctionet
+    schema: raw
+    tables:
+      - name: raw_auctionet
+        description: "Raw appended JSON data ingested via Snowpipe from Azure"
