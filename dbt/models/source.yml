@@ -5,5 +5,5 @@ sources:
     database: dbt_auctionet
     schema: raw
     tables:
-      - name: raw_auctionet
-        description: "Raw appended JSON data ingested via Snowpipe from Azure"
+      - name: raw_auctionet_paginated
+        description: "Raw paginated JSON data ingested from Azure"
