@@ -18,6 +18,8 @@ SELECT
     estimate,
     upper_estimate,
     starting_bid_amount,
+    estimate_sek,
+    starting_bid_amount_sek,
     next_bid_amount,
     reserve_amount,
     published_at,
