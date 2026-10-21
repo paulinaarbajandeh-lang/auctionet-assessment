@@ -35,6 +35,9 @@ models:
       - name: location
         description: "The physical city/location of the auction house."
 
+      - name: country
+        description: "Country of the auction house, derived from the location-to-country mapping seed."
+
 
   - name: dim_categories
     description: "Dimension table containing Auctionet category names and their parent category hierarchy."
