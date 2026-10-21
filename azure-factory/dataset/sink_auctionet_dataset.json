@@ -8,6 +8,9 @@
 		"parameters": {
 			"file_name": {
 				"type": "string"
+			},
+			"directory": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -19,7 +22,10 @@
 					"value": "@dataset().file_name",
 					"type": "Expression"
 				},
-				"folderPath": "paginated",
+				"folderPath": {
+					"value": "@dataset().directory",
+					"type": "Expression"
+				},
 				"container": "raw"
 			}
 		},
