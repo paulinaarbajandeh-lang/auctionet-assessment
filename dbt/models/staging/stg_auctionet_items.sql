@@ -37,6 +37,7 @@ flattened AS (
         f.value:reserve_amount::NUMBER AS reserve_amount,
         f.value:reserve_met::BOOLEAN AS reserve_met,
         f.value:hammered::BOOLEAN AS hammered,
+        f.value:bids AS bids,
 
         -- Timestamps (Epoch seconds)
         f.value:ends_at::NUMBER AS ends_at_epoch,

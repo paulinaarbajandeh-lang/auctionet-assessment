@@ -117,3 +117,39 @@ models:
 
       - name: ends_at
         description: "Timestamp when the auction bidding period expires."
+
+  - name: fct_bids
+    description: "Fact table containing one row per unique bid placed on an auction item."
+    columns:
+      - name: bid_id
+        description: "Primary key for the bid."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: item_id
+        description: "Foreign key linking the bid to the auction item."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_items')
+                field: item_id
+
+      - name: bidder_id
+        description: "Anonymised bidder identifier within the auction context."
+
+      - name: bid_amount
+        description: "Amount of the bid in the item's original currency."
+
+      - name: reserve_met
+        description: "Boolean flag showing whether the reserve price had been met at the time of the bid."
+
+      - name: auto_bid
+        description: "Boolean flag showing whether the bid was placed automatically."
+
+      - name: bid_timestamp_epoch
+        description: "Unix timestamp representing when the bid was placed."
+
+      - name: ingested_at
+        description: "Timestamp showing when the source data was ingested." 
