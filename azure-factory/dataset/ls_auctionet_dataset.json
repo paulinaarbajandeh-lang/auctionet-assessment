@@ -5,10 +5,18 @@
 			"referenceName": "ls_auctionet",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"relative_url": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "items.json"
+			"relativeUrl": {
+				"value": "@dataset().relative_url",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}

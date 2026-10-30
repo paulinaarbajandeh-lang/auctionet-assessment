@@ -5,6 +5,8 @@
 			{
 				"name": "Copy API Data",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -45,6 +47,158 @@
 					{
 						"referenceName": "sink_auctionet_dataset",
 						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Get total pages",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://auctionet.com/api/v2/items.json?page=1"
+				}
+			},
+			{
+				"name": "ForEach page",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get total pages",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@range(1, int(activity('Get total pages').output.pagination.total_pages))",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy Auctionet page",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"paginationRules": {
+										"supportRFC5988": "true"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "ls_auctionet_dataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"relative_url": "@concat('items.json?page=', string(item()))"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "sink_auctionet_dataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"file_name": "@concat(     'auctionet_data_',     formatDateTime(utcNow(),'yyyyMMdd_HHmmss'),     '_page_',     string(item()),     '.json' )",
+										"directory": "paginated"
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Copy Auctionet categories",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ForEach page",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ls_auctionet_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"relative_url": "categories.json"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sink_auctionet_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": "categories.json",
+							"directory": "categories"
+						}
 					}
 				]
 			}
