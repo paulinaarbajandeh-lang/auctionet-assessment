@@ -9,12 +9,16 @@ models:
         data_tests:
           - unique
           - not_null
+
       - name: title
         description: "Name/title of the item."
+
       - name: description
         description: "Cleaned text description of the item (HTML tags removed)."
+
       - name: condition
         description: "Cleaned condition text details (HTML tags removed)."
+
 
   - name: dim_houses
     description: "Dimension table containing unique auction house company profiles."
@@ -24,13 +28,38 @@ models:
         data_tests:
           - unique
           - not_null
+
       - name: house_name
         description: "Name of the auction house (e.g., Hälsinglands Auktionsverk)."
+
       - name: location
         description: "The physical city/location of the auction house."
 
+      - name: country
+        description: "Country of the auction house, derived from the location-to-country mapping seed."
+
+
+  - name: dim_categories
+    description: "Dimension table containing Auctionet category names and their parent category hierarchy."
+    columns:
+      - name: category_id
+        description: "Primary key for the Auctionet category."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: category_name
+        description: "Human-readable name of the Auctionet category."
+
+      - name: parent_category_id
+        description: "Identifier of the parent category. Null for top-level categories."
+
+      - name: parent_category_name
+        description: "Human-readable name of the parent category. Null for top-level categories."
+
+
   - name: fct_auctions
-    description: "Fact table containing all financial metrics, timestamps, and active status states for each item's auction event."
+    description: "Fact table containing financial metrics, timestamps, category references, and active auction status for each item."
     columns:
       - name: item_id
         description: "Foreign key linking to dim_items."
@@ -40,6 +69,7 @@ models:
               arguments:
                 to: ref('dim_items')
                 field: item_id
+
       - name: company_id
         description: "Foreign key linking to dim_houses."
         data_tests:
@@ -48,19 +78,120 @@ models:
               arguments:
                 to: ref('dim_houses')
                 field: company_id
+
+      - name: category_id
+        description: "Foreign key linking the auction item to dim_categories."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_categories')
+                field: category_id
+
       - name: auction_id
         description: "The specific identifier for the auction event."
+
       - name: estimate
-        description: "The base estimated value of the item in its local currency."
+        description: "The base estimated value of the item in its original local currency."
+
       - name: upper_estimate
-        description: "The maximum estimated value of the item."
+        description: "The maximum estimated value of the item in its original local currency."
+
       - name: starting_bid_amount
-        description: "The starting bid required to enter the auction."
+        description: "The starting bid required to enter the auction in its original local currency."
+
+      - name: estimate_sek
+        description: "Estimated item value normalized to SEK using fixed FX rates for the analysis."
+
+      - name: starting_bid_amount_sek
+        description: "Starting bid normalized to SEK using fixed FX rates for the analysis."
+
       - name: reserve_met
-        description: "Boolean flag representing if the hidden reserve pricing threshold has been met."
+        description: "Boolean flag representing whether the hidden reserve pricing threshold has been met."
+
       - name: hammered
-        description: "Boolean flag representing if the item successfully sold ('hammered down')."
+        description: "Boolean flag representing whether the auction item has been hammered."
+
       - name: published_at
-        description: "The regular timestamp when the auction item went live."
+        description: "Timestamp when the auction item was published."
+
       - name: ends_at
-        description: "The closing timestamp when the auction bidding period expires."
+        description: "Timestamp when the auction bidding period expires."
+
+  - name: fct_bids
+    description: "Fact table containing one row per unique bid placed on an auction item."
+    columns:
+      - name: bid_id
+        description: "Primary key for the bid."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: item_id
+        description: "Foreign key linking the bid to the auction item."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_items')
+                field: item_id
+
+      - name: bidder_id
+        description: "Anonymised bidder identifier within the auction context."
+
+      - name: bid_amount
+        description: "Amount of the bid in the item's original currency."
+
+      - name: reserve_met
+        description: "Boolean flag showing whether the reserve price had been met at the time of the bid."
+
+      - name: auto_bid
+        description: "Boolean flag showing whether the bid was placed automatically."
+
+      - name: bid_timestamp_epoch
+        description: "Unix timestamp representing when the bid was placed."
+
+      - name: ingested_at
+        description: "Timestamp showing when the source data was ingested." 
+        
+  - name: stg_auctionet_ended
+    description: "Staging model for historical ended auctions scraped from Auctionet's public ended-auctions pages."
+    columns:
+      - name: item_id
+        description: "Unique identifier for the ended auction item."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: auction_id
+        description: "Identifier for the auction or event."
+
+      - name: estimate
+        description: "Estimated value in the item's original currency."
+
+      - name: currency
+        description: "Original currency of the estimate."
+
+      - name: bid_count
+        description: "Number of bids shown for online auctions. Null for event auctions."
+
+      - name: hammer_price_sek
+        description: "Displayed final/hammer price in SEK from the Swedish ended-auctions page."
+        data_tests:
+          - not_null
+
+      - name: auction_end_time
+        description: "Displayed auction end text. May be null for event auctions."
+
+      - name: reserve_met
+        description: "Whether the reserve price was met."
+
+      - name: has_bid_count
+        description: "Boolean flag showing whether bid count is available."
+
+      - name: sale_format
+        description: "Auction format derived from the source URL, such as online or event."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['online', 'event']

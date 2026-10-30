@@ -7,3 +7,9 @@ sources:
     tables:
       - name: raw_auctionet_paginated
         description: "Raw paginated JSON data ingested from Azure"
+
+      - name: raw_auctionet_categories
+        description: "Raw Auctionet category hierarchy ingested from Azure"
+
+      - name: raw_auctionet_ended
+        description: "Historical ended auction data scraped from Auctionet's public ended-auctions pages"

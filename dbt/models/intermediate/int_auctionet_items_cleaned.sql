@@ -7,6 +7,16 @@ WITH staging AS (
     SELECT * FROM {{ ref('stg_auctionet_items') }}
 ),
 
+fx_rates AS (
+    SELECT 'SEK' AS currency, 1.00 AS rate_to_sek
+    UNION ALL
+    SELECT 'EUR', 11.10
+    UNION ALL
+    SELECT 'GBP', 12.80
+    UNION ALL
+    SELECT 'DKK', 1.49
+),
+
 cleaned AS (
     SELECT
         item_id,
@@ -25,10 +35,13 @@ cleaned AS (
         url,
         house_name,
         location,
-        currency,
+        s.currency as currency,
         estimate,
         upper_estimate,
         starting_bid_amount,
+        -- Normalize monetary values to SEK
+        estimate * fx.rate_to_sek AS estimate_sek,
+        starting_bid_amount * fx.rate_to_sek AS starting_bid_amount_sek,
         next_bid_amount,
         reserve_amount,
         reserve_met,
@@ -40,7 +53,9 @@ cleaned AS (
         
         file_path,
         ingested_at
-    FROM staging
+    FROM staging s
+    LEFT JOIN fx_rates fx
+        ON s.currency = fx.currency
 )
 
 SELECT * FROM cleaned
