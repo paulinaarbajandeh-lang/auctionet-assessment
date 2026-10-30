@@ -153,3 +153,45 @@ models:
 
       - name: ingested_at
         description: "Timestamp showing when the source data was ingested." 
+        
+  - name: stg_auctionet_ended
+    description: "Staging model for historical ended auctions scraped from Auctionet's public ended-auctions pages."
+    columns:
+      - name: item_id
+        description: "Unique identifier for the ended auction item."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: auction_id
+        description: "Identifier for the auction or event."
+
+      - name: estimate
+        description: "Estimated value in the item's original currency."
+
+      - name: currency
+        description: "Original currency of the estimate."
+
+      - name: bid_count
+        description: "Number of bids shown for online auctions. Null for event auctions."
+
+      - name: hammer_price_sek
+        description: "Displayed final/hammer price in SEK from the Swedish ended-auctions page."
+        data_tests:
+          - not_null
+
+      - name: auction_end_time
+        description: "Displayed auction end text. May be null for event auctions."
+
+      - name: reserve_met
+        description: "Whether the reserve price was met."
+
+      - name: has_bid_count
+        description: "Boolean flag showing whether bid count is available."
+
+      - name: sale_format
+        description: "Auction format derived from the source URL, such as online or event."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['online', 'event']
