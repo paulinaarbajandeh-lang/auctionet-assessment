@@ -224,3 +224,4 @@ models:
 
       - name: sale_format
         description: "Auction format, such as online or event."
+
