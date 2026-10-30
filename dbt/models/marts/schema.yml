@@ -225,3 +225,53 @@ models:
       - name: sale_format
         description: "Auction format, such as online or event."
 
+  - name: fct_ended_auctions
+    description: "Fact table containing one row per ended auction item with final hammer price and performance against estimate."
+    columns:
+      - name: item_id
+        description: "Unique identifier for the ended auction item."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: auction_id
+        description: "Identifier for the auction or event."
+
+      - name: estimate
+        description: "Estimated value in the item's original currency."
+
+      - name: currency
+        description: "Original currency of the estimate."
+
+      - name: estimate_sek
+        description: "Estimated value converted to SEK using fixed analysis FX rates."
+
+      - name: bid_count
+        description: "Number of bids shown for online auctions. Null for event auctions."
+
+      - name: hammer_price_sek
+        description: "Displayed final hammer price in SEK."
+        data_tests:
+          - not_null
+
+      - name: hammer_vs_estimate_sek
+        description: "Difference in SEK between hammer price and estimated value."
+
+      - name: hammer_to_estimate_ratio
+        description: "Hammer price divided by estimated value."
+
+      - name: hammer_vs_estimate_pct
+        description: "Percentage difference between hammer price and estimated value."
+
+      - name: reserve_met
+        description: "Whether the reserve price was met."
+
+      - name: has_bid_count
+        description: "Boolean flag showing whether bid count is available."
+
+      - name: sale_format
+        description: "Auction format, such as online or event."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['online', 'event']
