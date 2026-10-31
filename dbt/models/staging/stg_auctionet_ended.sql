@@ -3,7 +3,7 @@ select
     auction_id,
     estimate,
     currency,
-    bid_count,
+    bid_count::INTEGER AS bid_count,
     hammer_price_sek,
     auction_end_time,
     reserve_met,
@@ -11,10 +11,10 @@ select
     source_page,
     has_bid_count,
     sale_format,
-    company_id::STRING AS company_id,
+    company_id::INTEGER AS company_id,
     auction_house::STRING AS auction_house,
-    main_category_id::STRING AS main_category_id,
+    main_category_id::INTEGER AS main_category_id,
     main_category_name::STRING AS main_category_name,
-    subcategory_id::STRING AS subcategory_id,
-    subcategory_name::STRING AS subcategory_name,
+    subcategory_id::INTEGER AS subcategory_id,
+    subcategory_name::STRING AS subcategory_name
 from {{ source('auctionet_raw', 'raw_auctionet_ended_enriched') }}
