@@ -4,7 +4,7 @@
 ) }}
 
 WITH staging AS (
-    SELECT * FROM {{ ref('stg_auctionet_items') }}
+    SELECT * FROM {{ ref('stg_auctionet_items_current') }}
 ),
 
 fx_rates AS (
