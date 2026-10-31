@@ -13,5 +13,11 @@ select
     reserve_met,
     has_bid_count,
     sale_format,
-    url
+    url,
+    company_id,
+    auction_house,
+    main_category_id,
+    main_category_name,
+    subcategory_id,
+    subcategory_name
 from {{ ref('int_auctionet_ended_cleaned') }}
