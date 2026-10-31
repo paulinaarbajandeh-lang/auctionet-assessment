@@ -3,6 +3,12 @@ select
     auction_id,
     estimate,
     currency,
+    company_id,
+    auction_house,
+    main_category_id,
+    main_category_name,
+    subcategory_id,
+    subcategory_name,
 
     case
         when currency = 'SEK' then estimate

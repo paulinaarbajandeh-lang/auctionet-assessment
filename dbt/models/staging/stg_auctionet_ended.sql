@@ -10,5 +10,11 @@ select
     url,
     source_page,
     has_bid_count,
-    sale_format
-from {{ source('auctionet_raw', 'raw_auctionet_ended') }}
+    sale_format,
+    company_id::STRING AS company_id,
+    auction_house::STRING AS auction_house,
+    main_category_id::STRING AS main_category_id,
+    main_category_name::STRING AS main_category_name,
+    subcategory_id::STRING AS subcategory_id,
+    subcategory_name::STRING AS subcategory_name,
+from {{ source('auctionet_raw', 'raw_auctionet_ended_enriched') }}
