@@ -3,58 +3,34 @@
     schema='marts'
 ) }}
 
-WITH bids AS (
+WITH current_bids AS (
+
     SELECT
-        item_id,
-        bid_id,
-        bidder_id,
-        bid_amount,
-        your_bid,
-        reserve_met,
-        auto_bid,
-        bid_timestamp_epoch,
-        ingested_at,
+        i.item_id,
+        b.value:id::STRING AS bid_id,
+        b.value:bidder::STRING AS bidder_id,
+        b.value:amount::NUMBER AS bid_amount,
+        b.value:your_bid::BOOLEAN AS your_bid,
+        b.value:reserve_met::BOOLEAN AS reserve_met,
+        b.value:auto::BOOLEAN AS auto_bid,
+        b.value:timestamp::NUMBER AS bid_timestamp_epoch,
+        i.ingested_at
 
-        ROW_NUMBER() OVER (
-            PARTITION BY bid_id
-            ORDER BY ingested_at DESC
-        ) AS row_num
+    FROM {{ ref('stg_auctionet_items_current') }} i,
+    LATERAL FLATTEN(input => i.bids) b
 
-    FROM {{ ref('stg_auctionet_bids') }}
 ),
 
-deduplicated_bids AS (
-    SELECT
-        item_id,
-        bid_id,
-        bidder_id,
-        bid_amount,
-        your_bid,
-        reserve_met,
-        auto_bid,
-        bid_timestamp_epoch,
-        ingested_at
-    FROM bids
-    WHERE row_num = 1
-),
+deduplicated AS (
 
-current_items AS (
-    SELECT item_id
-    FROM {{ ref('dim_items') }}
+    SELECT *
+    FROM current_bids
+    QUALIFY ROW_NUMBER() OVER (
+        PARTITION BY bid_id
+        ORDER BY ingested_at DESC
+    ) = 1
+
 )
 
-SELECT
-    b.item_id,
-    b.bid_id,
-    b.bidder_id,
-    b.bid_amount,
-    b.your_bid,
-    b.reserve_met,
-    b.auto_bid,
-    b.bid_timestamp_epoch,
-    b.ingested_at
-
-FROM deduplicated_bids b
-
-INNER JOIN current_items c
-    ON b.item_id = c.item_id
+SELECT *
+FROM deduplicated
