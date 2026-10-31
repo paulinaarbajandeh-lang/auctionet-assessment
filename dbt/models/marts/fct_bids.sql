@@ -30,6 +30,7 @@ deduplicated AS (
         ORDER BY ingested_at DESC
     ) = 1
 
+
 )
 
 SELECT *
