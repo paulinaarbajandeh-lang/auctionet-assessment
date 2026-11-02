@@ -408,3 +408,70 @@ models:
         description: "Rank of the active item based on prioritisation score, with 1 representing the highest priority."
         tests:
           - not_null
+
+  - name: fct_active_item_prioritisation
+    description: >
+      Final mart model for active Auctionet item prioritisation.
+      Combines current bidder engagement with historical category and auction house
+      performance to produce a transparent prioritisation score and rank for active items.
+      Intended for downstream reporting and Power BI consumption.
+    columns:
+      - name: item_id
+        description: "Identifier for the active auction item."
+        tests:
+          - not_null
+
+      - name: company_id
+        description: "Identifier for the auction house."
+
+      - name: category_id
+        description: "Identifier for the item's category."
+
+      - name: main_category_id
+        description: "Identifier for the item's main category."
+
+      - name: main_category_name
+        description: "Name of the item's main category."
+
+      - name: auction_house
+        description: "Name of the auction house."
+
+      - name: current_bid_count
+        description: "Current number of bids on the active item."
+        tests:
+          - not_null
+
+      - name: engagement_score
+        description: >
+          Percentile-based score representing the item's current bid activity
+          relative to other active items.
+        tests:
+          - not_null
+
+      - name: category_pct_above_estimate
+        description: "Historical share of ended items in the category that sold above estimate."
+
+      - name: house_pct_above_estimate
+        description: "Historical share of ended items from the auction house that sold above estimate."
+
+      - name: category_confidence
+        description: "Confidence factor based on historical category sample size."
+        tests:
+          - not_null
+
+      - name: house_confidence
+        description: "Confidence factor based on historical auction house sample size."
+        tests:
+          - not_null
+
+      - name: prioritisation_score
+        description: >
+          Weighted prototype score combining current engagement with
+          confidence-adjusted historical category and auction house performance.
+        tests:
+          - not_null
+
+      - name: prioritisation_rank
+        description: "Rank of the active item based on prioritisation score, where 1 is highest priority."
+        tests:
+          - not_null
