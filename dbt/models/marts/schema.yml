@@ -275,3 +275,136 @@ models:
           - accepted_values:
               arguments:
                 values: ['online', 'event']
+  
+  - name: int_historical_category_performance
+    description: >
+      Historical auction performance aggregated by main category.
+      Used to provide category-level context for active auction items.
+    columns:
+      - name: main_category_id
+        description: "Identifier for the main auction category."
+        tests:
+          - not_null
+
+      - name: main_category_name
+        description: "Name of the main auction category."
+
+      - name: ended_items
+        description: "Number of historical ended auction items in the category."
+
+      - name: median_bid_count
+        description: "Median number of bids for historical ended items in the category."
+
+      - name: median_hammer_vs_estimate_pct
+        description: "Median hammer-price performance relative to estimate."
+
+      - name: pct_above_estimate
+        description: "Share of historical items in the category that sold above estimate."
+
+
+  - name: int_historical_house_performance
+    description: >
+      Historical auction performance aggregated by auction house.
+      Used to provide auction-house-level context for active auction items.
+    columns:
+      - name: company_id
+        description: "Identifier for the auction house."
+        tests:
+          - not_null
+
+      - name: auction_house
+        description: "Name of the auction house."
+
+      - name: ended_items
+        description: "Number of historical ended auction items for the auction house."
+
+      - name: median_bid_count
+        description: "Median number of bids for historical ended items from the auction house."
+
+      - name: median_hammer_vs_estimate_pct
+        description: "Median hammer-price performance relative to estimate."
+
+      - name: pct_above_estimate
+        description: "Share of historical items from the auction house that sold above estimate."
+
+
+  - name: int_active_items_with_historical_performance
+    description: >
+      Active auction items enriched with current bidder engagement and historical
+      category and auction house performance. Acts as the bridge between current
+      marketplace activity and historical auction outcomes.
+    columns:
+      - name: item_id
+        description: "Identifier for the active auction item."
+        tests:
+          - not_null
+
+      - name: current_bid_count
+        description: "Current number of bids on the active item."
+        tests:
+          - not_null
+
+      - name: category_pct_above_estimate
+        description: "Historical share of items in the item's category that sold above estimate."
+
+      - name: house_pct_above_estimate
+        description: "Historical share of items from the item's auction house that sold above estimate."
+
+      - name: category_ended_items
+        description: "Historical sample size for the item's category."
+
+      - name: house_ended_items
+        description: "Historical sample size for the item's auction house."
+
+
+  - name: int_active_item_prioritisation
+    description: >
+      Prototype prioritisation model for active Auctionet items. Combines current
+      bid engagement with historical category and auction house performance.
+      Historical signals are adjusted for sample-size confidence, and current
+      engagement is scored relative to the active inventory using percentile rank.
+    columns:
+      - name: item_id
+        description: "Identifier for the active auction item."
+        tests:
+          - not_null
+
+      - name: engagement_score
+        description: >
+          Percentile-based engagement score derived from current bid count.
+          Higher values indicate stronger engagement relative to other active items.
+        tests:
+          - not_null
+
+      - name: category_performance_score
+        description: "Historical category performance based on the share of ended items selling above estimate."
+        tests:
+          - not_null
+
+      - name: house_performance_score
+        description: "Historical auction house performance based on the share of ended items selling above estimate."
+        tests:
+          - not_null
+
+      - name: category_confidence
+        description: "Confidence factor based on the number of historical category observations."
+        tests:
+          - not_null
+
+      - name: house_confidence
+        description: "Confidence factor based on the number of historical auction house observations."
+        tests:
+          - not_null
+
+      - name: prioritisation_score
+        description: >
+          Weighted prototype score combining 50% current engagement,
+          25% confidence-adjusted historical category performance and
+          25% confidence-adjusted historical auction house performance.
+        tests:
+          - not_null
+
+      - name: prioritisation_rank
+        description: "Rank of the active item based on prioritisation score, with 1 representing the highest priority."
+        tests:
+          - not_null
