@@ -12,8 +12,8 @@ select
 
     coalesce(b.bid_count, 0) as current_bid_count,
 
-    c.parent_category_id as main_category_id,
-    c.parent_category_name as main_category_name,
+    coalesce(c.parent_category_id, c.category_id) as main_category_id,
+    coalesce(c.parent_category_name, c.category_name) as main_category_name,
 
     h.house_name as auction_house,
 
@@ -45,7 +45,7 @@ left join {{ ref('dim_houses') }} h
     on a.company_id = h.company_id
 
 left join {{ ref('int_historical_category_performance') }} cp
-    on c.parent_category_id = cp.main_category_id
+    on coalesce(c.parent_category_id, c.category_id) = cp.main_category_id
 
 left join {{ ref('int_historical_house_performance') }} hp
     on a.company_id = hp.company_id
