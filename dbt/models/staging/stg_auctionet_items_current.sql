@@ -60,3 +60,7 @@ flattened AS (
 
 SELECT *
 FROM flattened
+QUALIFY ROW_NUMBER() OVER (
+    PARTITION BY item_id
+    ORDER BY ingested_at DESC, page_number DESC
+) = 1

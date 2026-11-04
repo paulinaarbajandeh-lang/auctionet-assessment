@@ -418,9 +418,10 @@ models:
     columns:
       - name: item_id
         description: "Identifier for the active auction item."
-        tests:
+        data_tests:
           - not_null
-
+          - unique
+          
       - name: company_id
         description: "Identifier for the auction house."
 
@@ -475,3 +476,14 @@ models:
         description: "Rank of the active item based on prioritisation score, where 1 is highest priority."
         tests:
           - not_null
+
+  - name: stg_auctionet_items_current
+    description: >
+      Current active auction items, deduplicated to retain
+      one record per item_id.
+    columns:
+      - name: item_id
+        description: "Unique identifier for the active auction item."
+        data_tests:
+          - not_null
+          - unique
