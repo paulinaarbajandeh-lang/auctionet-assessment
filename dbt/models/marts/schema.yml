@@ -418,10 +418,10 @@ models:
     columns:
       - name: item_id
         description: "Identifier for the active auction item."
-        tests:
+        data_tests:
           - not_null
           - unique
-
+          
       - name: company_id
         description: "Identifier for the auction house."
 
@@ -486,4 +486,4 @@ models:
         description: "Unique identifier for the active auction item."
         data_tests:
           - not_null
-          - unique        
+          - unique
