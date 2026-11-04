@@ -476,6 +476,16 @@ models:
         description: "Rank of the active item based on prioritisation score, where 1 is highest priority."
         tests:
           - not_null
+      
+      - name: bid_count_rank
+        description: >
+          Baseline ranking of active items based solely on current bid count.
+          Items with equal bid counts are ordered by item_id.
+          Used to compare the proposed prioritisation model against a
+          simple popularity-based ranking.
+        data_tests:
+          - not_null
+          - unique
 
   - name: stg_auctionet_items_current
     description: >
