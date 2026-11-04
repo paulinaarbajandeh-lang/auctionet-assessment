@@ -30,6 +30,11 @@ select
     house_confidence,
 
     prioritisation_score,
-    prioritisation_rank
+    prioritisation_rank,
+
+    row_number() over (
+        order by current_bid_count desc, item_id
+    ) as bid_count_rank
+
 
 from {{ ref('int_active_item_prioritisation') }}
