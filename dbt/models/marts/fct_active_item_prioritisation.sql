@@ -34,7 +34,21 @@ select
 
     row_number() over (
         order by current_bid_count desc, item_id
-    ) as bid_count_rank
+    ) as bid_count_rank,
+    
+    case
+        when bid_count_rank <= 100
+             and prioritisation_rank <= 100
+            then 'Both Top 100'
 
+        when prioritisation_rank <= 100
+            then 'Priority Model Only'
+
+        when bid_count_rank <= 100
+            then 'Bid Count Only'
+
+        else 'Outside Top 100'
+    end as top_100_group
+    ) as bid_count_rank
 
 from {{ ref('int_active_item_prioritisation') }}

@@ -487,6 +487,22 @@ models:
           - not_null
           - unique
 
+      - name: top_100_group
+        description: >
+          Classifies active items based on whether they appear in the
+          Top 100 by bid count, the prioritisation model, both rankings,
+          or neither. Used to compare the proposed model with a
+          simple bid-count baseline.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - 'Both Top 100'
+                  - 'Priority Model Only'
+                  - 'Bid Count Only'
+                  - 'Outside Top 100'
+                  
   - name: stg_auctionet_items_current
     description: >
       Current active auction items, deduplicated to retain
