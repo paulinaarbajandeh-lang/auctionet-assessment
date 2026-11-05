@@ -49,5 +49,6 @@ select
 
         else 'Outside Top 100'
     end as top_100_group
+    ) as bid_count_rank
 
 from {{ ref('int_active_item_prioritisation') }}
