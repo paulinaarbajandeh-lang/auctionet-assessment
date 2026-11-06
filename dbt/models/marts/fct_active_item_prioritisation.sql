@@ -3,13 +3,23 @@
     schema='marts'
 ) }}
 
+with auctions as (
+    select
+        item_id,
+        ends_at,
+        published_at
+    from {{ ref('fct_auctions') }}
+)
+
 select
-    item_id,
+    p.item_id,
     company_id,
     category_id,
     main_category_id,
     main_category_name,
     auction_house,
+    auctions.ends_at,
+    auctions.published_at,
 
     estimate_sek,
     starting_bid_amount_sek,
@@ -33,7 +43,7 @@ select
     prioritisation_rank,
 
     row_number() over (
-        order by current_bid_count desc, item_id
+        order by p.current_bid_count desc, p.item_id
     ) as bid_count_rank,
     
     case
@@ -49,6 +59,7 @@ select
 
         else 'Outside Top 100'
     end as top_100_group
-    ) as bid_count_rank
 
-from {{ ref('int_active_item_prioritisation') }}
+from {{ ref('int_active_item_prioritisation') }} as p
+left join auctions
+    on p.item_id = auctions.item_id
