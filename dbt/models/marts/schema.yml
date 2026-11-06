@@ -502,7 +502,7 @@ models:
                   - 'Priority Model Only'
                   - 'Bid Count Only'
                   - 'Outside Top 100'
-
+                  
       - name: ends_at
         description: >
           Scheduled closing timestamp of the active auction.
