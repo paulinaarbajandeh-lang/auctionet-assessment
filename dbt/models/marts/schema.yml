@@ -503,6 +503,22 @@ models:
                   - 'Bid Count Only'
                   - 'Outside Top 100'
                   
+      - name: ends_at
+        description: >
+          Scheduled closing timestamp of the active auction.
+          Provides time-to-close context for marketplace
+          visibility decisions. Not used in the prioritisation score.
+        data_tests:
+          - not_null
+
+      - name: published_at
+        description: >
+          Timestamp when the active auction item was published.
+          Provides context for how long an item has been listed
+          and accumulated bids. Not used in the prioritisation score.
+        data_tests:
+          - not_null
+                  
   - name: stg_auctionet_items_current
     description: >
       Current active auction items, deduplicated to retain
