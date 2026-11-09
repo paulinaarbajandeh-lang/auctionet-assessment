@@ -518,7 +518,23 @@ models:
           and accumulated bids. Not used in the prioritisation score.
         data_tests:
           - not_null
-                  
+
+      - name: ends_at_stockholm
+        description: >
+          Scheduled auction closing timestamp converted from UTC
+          to Europe/Stockholm time, including daylight saving time.
+          Used for display in Power BI, not for scoring.
+        data_tests:
+          - not_null
+
+      - name: published_at_stockholm
+        description: >
+          Auction publication timestamp converted from UTC
+          to Europe/Stockholm time, including daylight saving time.
+          Used for display in Power BI, not for scoring.
+        data_tests:
+          - not_null
+
   - name: stg_auctionet_items_current
     description: >
       Current active auction items, deduplicated to retain

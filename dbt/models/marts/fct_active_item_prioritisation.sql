@@ -21,8 +21,22 @@ ranked_items as (
         p.main_category_name,
         p.auction_house,
 
+        -- Original timestamps in UTC
         a.ends_at,
         a.published_at,
+
+        -- Timestamps converted to Swedish local time (CET/CEST)
+        convert_timezone(
+            'UTC',
+            'Europe/Stockholm',
+            a.ends_at
+        ) as ends_at_stockholm,
+
+        convert_timezone(
+            'UTC',
+            'Europe/Stockholm',
+            a.published_at
+        ) as published_at_stockholm,
 
         p.estimate_sek,
         p.starting_bid_amount_sek,
