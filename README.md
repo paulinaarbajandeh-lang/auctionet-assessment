@@ -1,5 +1,5 @@
 # Individual Project
-# Auctionet – Marketplace Prioritisation
+# Auctionet Marketplace Prioritisation
 
 ## Project Overview
 
