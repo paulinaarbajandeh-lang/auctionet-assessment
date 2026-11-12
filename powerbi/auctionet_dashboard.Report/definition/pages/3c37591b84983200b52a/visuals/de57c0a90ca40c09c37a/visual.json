@@ -1,0 +1,433 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "de57c0a90ca40c09c37a",
+  "position": {
+    "x": 0,
+    "y": 581.17437087274675,
+    "z": 1000,
+    "height": 498.93271461716932,
+    "width": 1918.9719792968051,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE"
+                    }
+                  },
+                  "Property": "AUCTION_HOUSE"
+                }
+              },
+              "queryRef": "INT_HISTORICAL_HOUSE_PERFORMANCE.AUCTION_HOUSE",
+              "nativeQueryRef": "Auction House:",
+              "active": true,
+              "displayName": "Auction House:"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE"
+                        }
+                      },
+                      "Property": "MEDIAN_HAMMER_VS_ESTIMATE_PCT"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(INT_HISTORICAL_HOUSE_PERFORMANCE.MEDIAN_HAMMER_VS_ESTIMATE_PCT)",
+              "nativeQueryRef": "Median Price vs Estimate (%):",
+              "displayName": "Median Price vs Estimate (%):",
+              "format": "0 %;-0 %;0 %"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE"
+                        }
+                      },
+                      "Property": "ENDED_ITEMS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(INT_HISTORICAL_HOUSE_PERFORMANCE.ENDED_ITEMS)",
+              "nativeQueryRef": "Summa ENDED_ITEMS1",
+              "displayName": "Historical Sales (n):",
+              "format": "0"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE"
+                        }
+                      },
+                      "Property": "PCT_ABOVE_ESTIMATE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(INT_HISTORICAL_HOUSE_PERFORMANCE.PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "% Above Estimate:",
+              "displayName": "% Above Estimate:",
+              "format": "0 %;-0 %;0 %"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE"
+                        }
+                      },
+                      "Property": "ENDED_ITEMS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(INT_HISTORICAL_HOUSE_PERFORMANCE.ENDED_ITEMS)",
+              "nativeQueryRef": "Summa ENDED_ITEMS1",
+              "displayName": "Historical Sales (n):",
+              "format": "0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE"
+                      }
+                    },
+                    "Property": "PCT_ABOVE_ESTIMATE"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "61D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(INT_HISTORICAL_HOUSE_PERFORMANCE.PCT_ABOVE_ESTIMATE)"
+          }
+        },
+        {
+          "properties": {
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "32D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(INT_HISTORICAL_HOUSE_PERFORMANCE.ENDED_ITEMS)"
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "concatenateLabels": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "autoExpand": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "50L"
+                }
+              }
+            },
+            "preferredCategoryWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "initialScrollPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'start'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "seriesLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "showMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Historical Auction House Performance & Sample Size'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "478eea910bc3ac1458d1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE"
+              }
+            },
+            "Property": "AUCTION_HOUSE"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "i1",
+                        "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "i1"
+                            }
+                          },
+                          "Property": "AUCTION_HOUSE"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Aggregation": {
+                            "Expression": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "i1"
+                                  }
+                                },
+                                "Property": "ENDED_ITEMS"
+                              }
+                            },
+                            "Function": 0
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 15
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "i1",
+              "Entity": "INT_HISTORICAL_HOUSE_PERFORMANCE",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "i1"
+                          }
+                        },
+                        "Property": "AUCTION_HOUSE"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

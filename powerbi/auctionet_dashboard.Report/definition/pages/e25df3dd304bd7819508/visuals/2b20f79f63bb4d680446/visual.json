@@ -1,0 +1,232 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "2b20f79f63bb4d680446",
+  "position": {
+    "x": 0,
+    "y": 142.85714285714283,
+    "z": 4000,
+    "height": 503.5714285714285,
+    "width": 889.28571428571422,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "ITEM_ID"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.ITEM_ID",
+              "nativeQueryRef": "Item ID:",
+              "active": true,
+              "displayName": "Item ID:"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "CURRENT_BID_COUNT"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CURRENT_BID_COUNT)",
+              "nativeQueryRef": "Current Bids:",
+              "displayName": "Current Bids:",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "MAIN_CATEGORY_NAME"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(FCT_ACTIVE_ITEM_PRIORITISATION.MAIN_CATEGORY_NAME)",
+              "nativeQueryRef": "Category:",
+              "displayName": "Category:"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "AUCTION_HOUSE"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(FCT_ACTIVE_ITEM_PRIORITISATION.AUCTION_HOUSE)",
+              "nativeQueryRef": "Auction House:",
+              "displayName": "Auction House:"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "PRIORITISATION_SCORE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_SCORE)",
+              "nativeQueryRef": "Medelvärde på PRIORITISATION_SCORE",
+              "displayName": "Priority Score:",
+              "format": "0.000"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "BID_COUNT_RANK"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.BID_COUNT_RANK)",
+              "nativeQueryRef": "Bid Count Rank:",
+              "active": true,
+              "displayName": "Bid Count Rank:"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "PRIORITISATION_RANK"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_RANK)",
+              "nativeQueryRef": "Medelvärde på PRIORITISATION_RANK",
+              "displayName": "Priority Rank:",
+              "format": "0"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bid Count Rank'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Priority Rank'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bid Count Rank vs Priority Rank'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

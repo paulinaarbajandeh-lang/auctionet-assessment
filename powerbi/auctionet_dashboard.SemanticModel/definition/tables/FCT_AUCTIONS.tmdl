@@ -1,0 +1,279 @@
+table FCT_AUCTIONS
+	lineageTag: 4ad561b3-a2e4-4560-87c4-6ebf1a742c09
+
+	measure 'Pricing Gap %' =
+			
+			AVERAGEX(
+			    FILTER(
+			        FCT_AUCTIONS,
+			        NOT ISBLANK(FCT_AUCTIONS[ESTIMATE]) &&
+			        FCT_AUCTIONS[ESTIMATE] > 0 &&
+			        NOT ISBLANK(FCT_AUCTIONS[STARTING_BID_AMOUNT])
+			    ),
+			    DIVIDE(
+			        FCT_AUCTIONS[ESTIMATE] - FCT_AUCTIONS[STARTING_BID_AMOUNT],
+			        FCT_AUCTIONS[ESTIMATE]
+			    )
+			)
+		formatString: 0.0
+		lineageTag: 41810b94-2fcf-458b-a193-d4015920062c
+
+	measure 'Selected Currency' =
+			
+			SELECTEDVALUE(
+			    FCT_AUCTIONS[CURRENCY],
+			    "Multiple"
+			)
+		lineageTag: 78e2eb10-8035-47d4-b78e-1c4001d52071
+
+	measure 'Average Estimate Display' =
+			
+			FORMAT(
+			    AVERAGE(FCT_AUCTIONS[ESTIMATE]),
+			    "#,##0"
+			)
+			& " "
+			& [Selected Currency]
+		lineageTag: 83f50ccb-5c8c-451c-82c5-27327c391953
+
+	measure 'Average Starting Bid Display' =
+			
+			FORMAT(
+			    AVERAGE(FCT_AUCTIONS[STARTING_BID_AMOUNT]),
+			    "#,##0"
+			)
+			& " "
+			& [Selected Currency]
+		lineageTag: 4d7d2fc7-aa96-4a49-b642-faa7320d6b34
+
+	measure 'Total Unique Items' =
+			
+			DISTINCTCOUNT(FCT_AUCTIONS[ITEM_ID])
+		formatString: 0
+		lineageTag: 56934f62-72c2-4580-b99a-acb7018d1b82
+
+	measure 'Number of Auction Houses' =
+			
+			DISTINCTCOUNT(FCT_AUCTIONS[COMPANY_ID])
+		formatString: 0
+		lineageTag: 22143953-3e70-4afc-97ed-0bf5a8047fc7
+
+	measure 'Average Estimate SEK' =
+			
+			AVERAGE(FCT_AUCTIONS[ESTIMATE_SEK])
+		lineageTag: 76b14eb4-e1f2-4fd5-af54-cd7d488fae59
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Starting Bid SEK' =
+			
+			AVERAGE(FCT_AUCTIONS[STARTING_BID_AMOUNT_SEK])
+		lineageTag: c7993ebe-5489-4f17-874f-8f514fecf4f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Pricing Gap %' =
+			
+			AVERAGEX(
+			    FILTER(
+			        FCT_AUCTIONS,
+			        NOT ISBLANK(FCT_AUCTIONS[ESTIMATE]) &&
+			        FCT_AUCTIONS[ESTIMATE] > 0 &&
+			        NOT ISBLANK(FCT_AUCTIONS[STARTING_BID_AMOUNT])
+			    ),
+			    DIVIDE(
+			        FCT_AUCTIONS[ESTIMATE] - FCT_AUCTIONS[STARTING_BID_AMOUNT],
+			        FCT_AUCTIONS[ESTIMATE]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 0f8d9121-607e-424f-97b4-cf3d8bb32fe6
+
+	column ITEM_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: e080a2af-cb64-4c5d-9d57-99c916afa406
+		summarizeBy: none
+		sourceColumn: ITEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUCTION_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 371d93ea-297f-4401-bb88-c9ccea84db3e
+		summarizeBy: none
+		sourceColumn: AUCTION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPANY_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: fed33a10-fd5a-436b-b6f7-8c897a541b08
+		summarizeBy: none
+		sourceColumn: COMPANY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 054377ae-37fb-4121-a8b7-ef5050d76e48
+		summarizeBy: none
+		sourceColumn: CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURRENCY
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 4cdd83c6-5f01-4e22-856a-977e48afa6bf
+		summarizeBy: none
+		sourceColumn: CURRENCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESERVE_MET
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: b1c26b15-0e7e-4ea3-a9d4-e28a91e094ca
+		summarizeBy: none
+		sourceColumn: RESERVE_MET
+
+		annotation SummarizationSetBy = Automatic
+
+	column HAMMERED
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: acc2d2c8-f293-4794-b5f6-f0c1ee0e70a7
+		summarizeBy: none
+		sourceColumn: HAMMERED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATE
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		sourceProviderType: decimal(38, 0)
+		lineageTag: 6db7ad37-af7c-4964-b0d8-3e9da1c72f67
+		summarizeBy: sum
+		sourceColumn: ESTIMATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column UPPER_ESTIMATE
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: 574c6b48-65ca-4c23-a642-d4b1a85f52c6
+		summarizeBy: sum
+		sourceColumn: UPPER_ESTIMATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column STARTING_BID_AMOUNT
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: e624aa53-fdb9-4ff9-8a7b-ee3b10477b37
+		summarizeBy: sum
+		sourceColumn: STARTING_BID_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NEXT_BID_AMOUNT
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: 5942444b-18e3-48f6-9b7d-782b8be75c2c
+		summarizeBy: sum
+		sourceColumn: NEXT_BID_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RESERVE_AMOUNT
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: 0ae9105d-d84b-4c41-988d-4a18df3e8a63
+		summarizeBy: sum
+		sourceColumn: RESERVE_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PUBLISHED_AT
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 52df94f9-b959-439c-aeea-6264fe8bbbb6
+		summarizeBy: none
+		sourceColumn: PUBLISHED_AT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDS_AT
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 6a9a594f-9b50-4b37-814a-549c8933bbbe
+		summarizeBy: none
+		sourceColumn: ENDS_AT
+
+		annotation SummarizationSetBy = Automatic
+
+	column INGESTED_AT
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 023f9ccc-07c8-4aec-bf48-58e60304dcc4
+		summarizeBy: none
+		sourceColumn: INGESTED_AT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATE_SEK
+		dataType: double
+		sourceProviderType: decimal(38, 2)
+		lineageTag: 8fd19dde-962c-4930-b089-249e5d3a5714
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_SEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column STARTING_BID_AMOUNT_SEK
+		dataType: double
+		sourceProviderType: decimal(38, 2)
+		lineageTag: 363605db-d6d2-4c70-b32f-6ce51239c594
+		summarizeBy: sum
+		sourceColumn: STARTING_BID_AMOUNT_SEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FCT_AUCTIONS = m
+		mode: directQuery
+		source =
+				let
+				    Källa = Snowflake.Databases("ZOIVWMV-HN74219.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DBT_AUCTIONET_Database = Källa{[Name="DBT_AUCTIONET",Kind="Database"]}[Data],
+				    DBT_PAULINAARBAJANDEHLANG_MARTS_Schema = DBT_AUCTIONET_Database{[Name="DBT_PAULINAARBAJANDEHLANG_MARTS",Kind="Schema"]}[Data],
+				    FCT_AUCTIONS_Table = DBT_PAULINAARBAJANDEHLANG_MARTS_Schema{[Name="FCT_AUCTIONS",Kind="Table"]}[Data]
+				in
+				    FCT_AUCTIONS_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigering
+

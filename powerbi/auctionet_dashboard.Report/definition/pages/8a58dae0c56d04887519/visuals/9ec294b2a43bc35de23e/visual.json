@@ -1,0 +1,248 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "9ec294b2a43bc35de23e",
+  "position": {
+    "x": 959.95628614361829,
+    "y": 627.905833067711,
+    "z": 3000,
+    "height": 453.22526296616729,
+    "width": 959.95628614361829,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "TOP_100_GROUP"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.TOP_100_GROUP",
+              "nativeQueryRef": "TOP_100_GROUP",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "CATEGORY_PCT_ABOVE_ESTIMATE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CATEGORY_PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "Historical Category Performance",
+              "displayName": "Historical Category Performance",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "HOUSE_PCT_ABOVE_ESTIMATE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.HOUSE_PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "Historical House Performance",
+              "displayName": "Historical House Performance",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                      }
+                    },
+                    "Property": "CATEGORY_PCT_ABOVE_ESTIMATE"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "optimizeLabelDisplay": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Historical Performance by Ranking Group'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "50f68c56c3460c6b755d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "TOP_100_GROUP"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "f"
+                              }
+                            },
+                            "Property": "TOP_100_GROUP"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Outside Top 100'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

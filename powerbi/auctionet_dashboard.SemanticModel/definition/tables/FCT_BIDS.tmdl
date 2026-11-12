@@ -1,0 +1,180 @@
+table FCT_BIDS
+	lineageTag: 0bc63018-e0a1-4b7e-b9ae-4a998beee1ef
+
+	measure 'Total Bids' =
+			
+			COUNTROWS(FCT_BIDS)
+		formatString: 0
+		lineageTag: 822fab7c-e1b6-4f85-839a-dfec44202f79
+
+	measure 'Items with Bids' =
+			
+			DISTINCTCOUNT(FCT_BIDS[ITEM_ID])
+		formatString: 0
+		lineageTag: 1495019d-f3d3-4aae-b270-486540ff63b8
+
+	measure 'Bid Activity Rate' =
+			
+			DIVIDE(
+			    [Items with Bids],
+			    [Total Unique Items]
+			)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: bdba6ea9-662e-41c8-9b8c-ee48270d29a7
+
+	measure 'Average Bids per Item' =
+			
+			DIVIDE(
+			    [Total Bids],
+			    [Items with Bids]
+			)
+		lineageTag: 2cfb9d1f-ba43-4898-b030-99ae21d6c6fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Bids per Active Item' =
+			
+			DIVIDE(
+			    [Total Bids],
+			    [Total Unique Items]
+			)
+		lineageTag: 0742df44-5ee0-4fb0-9179-f98efa500f2f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Highest Bid' =
+			
+			MAX(FCT_BIDS[BID_AMOUNT])
+		lineageTag: e6645b8f-7816-41fe-8c81-2cbaf777d764
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Bid Amount' =
+			
+			AVERAGE(FCT_BIDS[BID_AMOUNT])
+		lineageTag: 37de621c-c69c-4ee0-af1c-6a68ccd44100
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Auto Bids' =
+			
+			CALCULATE(
+			    COUNTROWS(FCT_BIDS),
+			    FCT_BIDS[AUTO_BID] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 26944ad6-e4dc-4686-aa8e-c70dd7f88b95
+
+	measure 'Auto Bid Rate' =
+			
+			DIVIDE(
+			    [Auto Bids],
+			    [Total Bids]
+			)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 3a618a93-7b75-47ef-8fcb-c3c22587658d
+
+	column ITEM_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 22d8e167-0d48-4daa-aa80-32487d1d5dfb
+		summarizeBy: none
+		sourceColumn: ITEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BID_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 55288161-38df-4b08-b5de-bdcf5aba6433
+		summarizeBy: none
+		sourceColumn: BID_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BIDDER_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 3f9c7b00-93c4-4e43-8042-fac872bab563
+		summarizeBy: none
+		sourceColumn: BIDDER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BID_AMOUNT
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: a8a95819-4bdb-4986-b013-ea4552a0c26a
+		summarizeBy: sum
+		sourceColumn: BID_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YOUR_BID
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: ec5f7859-8936-46f7-9e8b-8f966b0184af
+		summarizeBy: none
+		sourceColumn: YOUR_BID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESERVE_MET
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 276d767a-7b25-4da9-b45d-9dc8e747b435
+		summarizeBy: none
+		sourceColumn: RESERVE_MET
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUTO_BID
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: ef7f3426-363f-493f-8849-589b8729b569
+		summarizeBy: none
+		sourceColumn: AUTO_BID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BID_TIMESTAMP_EPOCH
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: 6bf12a0d-2fbd-42fd-9a0b-76447fec8859
+		summarizeBy: sum
+		sourceColumn: BID_TIMESTAMP_EPOCH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INGESTED_AT
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 8ce57e1a-9329-40be-92c0-24bf109fd7b7
+		summarizeBy: none
+		sourceColumn: INGESTED_AT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FCT_BIDS = m
+		mode: directQuery
+		source =
+				let
+				    Källa = Snowflake.Databases("ZOIVWMV-HN74219.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DBT_AUCTIONET_Database = Källa{[Name="DBT_AUCTIONET",Kind="Database"]}[Data],
+				    DBT_PAULINAARBAJANDEHLANG_MARTS_Schema = DBT_AUCTIONET_Database{[Name="DBT_PAULINAARBAJANDEHLANG_MARTS",Kind="Schema"]}[Data],
+				    FCT_BIDS_Table = DBT_PAULINAARBAJANDEHLANG_MARTS_Schema{[Name="FCT_BIDS",Kind="Table"]}[Data]
+				in
+				    FCT_BIDS_Table
+
+	annotation PBI_NavigationStepName = Navigering
+
+	annotation PBI_ResultType = Table
+

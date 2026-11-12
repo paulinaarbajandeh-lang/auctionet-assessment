@@ -1,0 +1,90 @@
+table DIM_ITEMS
+	lineageTag: a9674616-6d55-4fa9-8864-3f3e67a2c093
+
+	column ITEM_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 929b307d-fc81-45c9-b800-2e76d3a7b6c0
+		summarizeBy: none
+		sourceColumn: ITEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TITLE
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: be7eaafb-fe2e-48da-ba6c-2d54213148d4
+		summarizeBy: none
+		sourceColumn: TITLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCRIPTION
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: a7bf6757-b649-4c27-8b25-3dcdc04ac774
+		summarizeBy: none
+		sourceColumn: DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONDITION
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: f8689b9c-a1c9-4d89-b5bf-6acb7b881493
+		summarizeBy: none
+		sourceColumn: CONDITION
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 4fdb5394-eee4-45da-98c4-ad9b84bf57f7
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUCTION_TYPE
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 0fbd22eb-e5fd-4df7-abaa-bb9c13dca9fc
+		summarizeBy: none
+		sourceColumn: AUCTION_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLACEMENT
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: c7bfc75c-3e1a-4a41-b179-a7e33b9e5a07
+		summarizeBy: none
+		sourceColumn: PLACEMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column URL
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: d728503b-28d7-491d-8d62-19f499c756dd
+		summarizeBy: none
+		sourceColumn: URL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_ITEMS = m
+		mode: directQuery
+		source =
+				let
+				    Källa = Snowflake.Databases("ZOIVWMV-HN74219.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DBT_AUCTIONET_Database = Källa{[Name="DBT_AUCTIONET",Kind="Database"]}[Data],
+				    DBT_PAULINAARBAJANDEHLANG_MARTS_Schema = DBT_AUCTIONET_Database{[Name="DBT_PAULINAARBAJANDEHLANG_MARTS",Kind="Schema"]}[Data],
+				    DIM_ITEMS_Table = DBT_PAULINAARBAJANDEHLANG_MARTS_Schema{[Name="DIM_ITEMS",Kind="Table"]}[Data]
+				in
+				    DIM_ITEMS_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigering
+

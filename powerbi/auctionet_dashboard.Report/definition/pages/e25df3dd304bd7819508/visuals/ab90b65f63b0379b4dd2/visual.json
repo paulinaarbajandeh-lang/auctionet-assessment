@@ -1,0 +1,173 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ab90b65f63b0379b4dd2",
+  "position": {
+    "x": 0,
+    "y": 820.38461538461547,
+    "z": 5000,
+    "height": 259.61538461538458,
+    "width": 446.15384615384613,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "INT_HISTORICAL_CATEGORY_PERFORMANCE"
+                    }
+                  },
+                  "Property": "MAIN_CATEGORY_NAME"
+                }
+              },
+              "queryRef": "INT_HISTORICAL_CATEGORY_PERFORMANCE.MAIN_CATEGORY_NAME",
+              "nativeQueryRef": "MAIN_CATEGORY_NAME",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "INT_HISTORICAL_CATEGORY_PERFORMANCE"
+                        }
+                      },
+                      "Property": "ENDED_ITEMS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(INT_HISTORICAL_CATEGORY_PERFORMANCE.ENDED_ITEMS)",
+              "nativeQueryRef": "Summa ENDED_ITEMS",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "INT_HISTORICAL_CATEGORY_PERFORMANCE"
+                        }
+                      },
+                      "Property": "MEDIAN_HAMMER_VS_ESTIMATE_PCT"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(INT_HISTORICAL_CATEGORY_PERFORMANCE.MEDIAN_HAMMER_VS_ESTIMATE_PCT)",
+              "nativeQueryRef": "Medelvärde på MEDIAN_HAMMER_VS_ESTIMATE_PCT",
+              "format": "0 %;-0 %;0 %"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "INT_HISTORICAL_CATEGORY_PERFORMANCE"
+                        }
+                      },
+                      "Property": "PCT_ABOVE_ESTIMATE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(INT_HISTORICAL_CATEGORY_PERFORMANCE.PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "Medelvärde på PCT_ABOVE_ESTIMATE",
+              "format": "#,0 %;-#,0 %;#,0 %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "INT_HISTORICAL_CATEGORY_PERFORMANCE"
+                      }
+                    },
+                    "Property": "PCT_ABOVE_ESTIMATE"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Historical Performance by Category'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

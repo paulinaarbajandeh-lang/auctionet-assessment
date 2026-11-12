@@ -1,0 +1,54 @@
+table DIM_CATEGORIES
+	lineageTag: db937ea4-1736-419d-90d4-d43b7918a3cf
+
+	column CATEGORY_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 50af06a1-1dcb-4faa-a296-bcdf50d52712
+		summarizeBy: none
+		sourceColumn: CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY_NAME
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 4ad82974-52a3-405b-9b0b-32195b0ca15c
+		summarizeBy: none
+		sourceColumn: CATEGORY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARENT_CATEGORY_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: c38db054-2480-4b25-8430-cc1e910b6e5e
+		summarizeBy: none
+		sourceColumn: PARENT_CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PARENT_CATEGORY_NAME
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 20d218f4-3177-46e1-a28b-847651a4301c
+		summarizeBy: none
+		sourceColumn: PARENT_CATEGORY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_CATEGORIES = m
+		mode: directQuery
+		source =
+				let
+				    Källa = Snowflake.Databases("ZOIVWMV-HN74219.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DBT_AUCTIONET_Database = Källa{[Name="DBT_AUCTIONET",Kind="Database"]}[Data],
+				    DBT_PAULINAARBAJANDEHLANG_MARTS_Schema = DBT_AUCTIONET_Database{[Name="DBT_PAULINAARBAJANDEHLANG_MARTS",Kind="Schema"]}[Data],
+				    DIM_CATEGORIES_Table = DBT_PAULINAARBAJANDEHLANG_MARTS_Schema{[Name="DIM_CATEGORIES",Kind="Table"]}[Data]
+				in
+				    DIM_CATEGORIES_Table
+
+	annotation PBI_NavigationStepName = Navigering
+
+	annotation PBI_ResultType = Table
+

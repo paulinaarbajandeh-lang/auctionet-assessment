@@ -1,0 +1,100 @@
+table INT_HISTORICAL_CATEGORY_PERFORMANCE
+	lineageTag: 5ad306f5-78de-40d2-8b54-9de0a4475114
+
+	column MAIN_CATEGORY_ID
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: abd7388c-cff8-4434-a7c8-620fe1d33647
+		summarizeBy: count
+		sourceColumn: MAIN_CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MAIN_CATEGORY_NAME
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 6a2783de-a08a-44cd-9801-72983c1c7d21
+		summarizeBy: none
+		sourceColumn: MAIN_CATEGORY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDED_ITEMS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: e71af464-0141-4f27-8c5c-aa926daae737
+		summarizeBy: sum
+		sourceColumn: ENDED_ITEMS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_BID_COUNT
+		dataType: double
+		sourceProviderType: decimal(38, 6)
+		lineageTag: 910122fa-80e2-4068-9127-fbf5d5beea9c
+		summarizeBy: sum
+		sourceColumn: AVG_BID_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MEDIAN_BID_COUNT
+		dataType: double
+		sourceProviderType: decimal(38, 3)
+		lineageTag: 9fbf172d-097f-4225-8ba6-380ae037a430
+		summarizeBy: sum
+		sourceColumn: MEDIAN_BID_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_HAMMER_VS_ESTIMATE_PCT
+		dataType: double
+		sourceProviderType: decimal(38, 12)
+		lineageTag: 6e6cefb4-8a83-400d-982c-767ab41c54b9
+		summarizeBy: sum
+		sourceColumn: AVG_HAMMER_VS_ESTIMATE_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MEDIAN_HAMMER_VS_ESTIMATE_PCT
+		dataType: double
+		sourceProviderType: decimal(38, 11)
+		lineageTag: 021f2b97-8d3e-4ecc-97a1-c83cb51703c5
+		summarizeBy: sum
+		sourceColumn: MEDIAN_HAMMER_VS_ESTIMATE_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PCT_ABOVE_ESTIMATE
+		dataType: double
+		sourceProviderType: decimal(19, 6)
+		lineageTag: c2bed073-15af-4b76-93c6-338fd3cd8fee
+		summarizeBy: sum
+		sourceColumn: PCT_ABOVE_ESTIMATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition INT_HISTORICAL_CATEGORY_PERFORMANCE = m
+		mode: directQuery
+		source =
+				let
+				    Källa = Snowflake.Databases("ZOIVWMV-HN74219.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DBT_AUCTIONET_Database = Källa{[Name="DBT_AUCTIONET",Kind="Database"]}[Data],
+				    DBT_PAULINAARBAJANDEHLANG_INTERMEDIATE_Schema = DBT_AUCTIONET_Database{[Name="DBT_PAULINAARBAJANDEHLANG_INTERMEDIATE",Kind="Schema"]}[Data],
+				    INT_HISTORICAL_CATEGORY_PERFORMANCE_View = DBT_PAULINAARBAJANDEHLANG_INTERMEDIATE_Schema{[Name="INT_HISTORICAL_CATEGORY_PERFORMANCE",Kind="View"]}[Data]
+				in
+				    INT_HISTORICAL_CATEGORY_PERFORMANCE_View
+

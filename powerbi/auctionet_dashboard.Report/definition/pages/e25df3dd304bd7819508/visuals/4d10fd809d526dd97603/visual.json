@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "4d10fd809d526dd97603",
+  "position": {
+    "x": 10,
+    "y": 0,
+    "z": 0,
+    "height": 120,
+    "width": 161.66666666666669,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_BIDS"
+                    }
+                  },
+                  "Property": "Total Bids"
+                }
+              },
+              "queryRef": "FCT_BIDS.Total Bids",
+              "nativeQueryRef": "Total Bids",
+              "format": "0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_BIDS"
+                  }
+                },
+                "Property": "Total Bids"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_BIDS.Total Bids"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

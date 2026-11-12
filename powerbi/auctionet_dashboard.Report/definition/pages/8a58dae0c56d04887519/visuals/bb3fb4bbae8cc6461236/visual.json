@@ -1,0 +1,132 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bb3fb4bbae8cc6461236",
+  "position": {
+    "x": 959.95628614361829,
+    "y": 461.09375711488548,
+    "z": 2000,
+    "height": 169.95947361231273,
+    "width": 958.38258731387464,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Top100_Comparison"
+                    }
+                  },
+                  "Property": "Ranking"
+                }
+              },
+              "queryRef": "Top100_Comparison.Ranking",
+              "nativeQueryRef": "Ranking",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "Shared Top 100"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.Shared Top 100",
+              "nativeQueryRef": "Shared Top 100"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "Ranking-Specific Top 100"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.Ranking-Specific Top 100",
+              "nativeQueryRef": "Ranking-Specific Top 100"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                  }
+                },
+                "Property": "Shared Top 100"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top 100 Ranking Comparison'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

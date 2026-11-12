@@ -1,0 +1,157 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "30173f1463b52356082c",
+  "position": {
+    "x": 0,
+    "y": 571.66666666666674,
+    "z": 13000,
+    "height": 270,
+    "width": 960,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CATEGORIES"
+                    }
+                  },
+                  "Property": "PARENT_CATEGORY_NAME"
+                }
+              },
+              "queryRef": "DIM_CATEGORIES.PARENT_CATEGORY_NAME",
+              "nativeQueryRef": "Main category:",
+              "active": true,
+              "displayName": "Main category:"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Average Estimate SEK"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Average Estimate SEK",
+              "nativeQueryRef": "Average estimate (SEK):",
+              "displayName": "Average estimate (SEK):",
+              "format": "#,0 \"kr\";-#,0 \"kr\";#,0 \"kr\""
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Average Starting Bid SEK"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Average Starting Bid SEK",
+              "nativeQueryRef": "Average starting bid (SEK):",
+              "displayName": "Average starting bid (SEK):",
+              "format": "#,0 \"kr\";-#,0 \"kr\";#,0 \"kr\""
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Pricing Gap %"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Pricing Gap %",
+              "nativeQueryRef": "Pricing gap %:",
+              "displayName": "Pricing gap %:",
+              "format": "0 %;-0 %;0 %"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Total Unique Items"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Total Unique Items",
+              "nativeQueryRef": "Total unique items:",
+              "displayName": "Total unique items:"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_AUCTIONS"
+                  }
+                },
+                "Property": "Total Unique Items"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Active items by main category'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

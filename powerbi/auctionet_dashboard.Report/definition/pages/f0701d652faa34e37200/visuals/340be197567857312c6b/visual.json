@@ -1,0 +1,330 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "340be197567857312c6b",
+  "position": {
+    "x": 0,
+    "y": 841.66666666666674,
+    "z": 12000,
+    "height": 238.33333333333334,
+    "width": 1920,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_HOUSES"
+                    }
+                  },
+                  "Property": "HOUSE_NAME"
+                }
+              },
+              "queryRef": "DIM_HOUSES.HOUSE_NAME",
+              "nativeQueryRef": "Auction house",
+              "active": true,
+              "displayName": "Auction house"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Total Unique Items"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Total Unique Items",
+              "nativeQueryRef": "Total unique items",
+              "displayName": "Total unique items"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Average Estimate SEK"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Average Estimate SEK",
+              "nativeQueryRef": "Average estimate (SEK)",
+              "displayName": "Average estimate (SEK)",
+              "format": "#,0 \"kr\";-#,0 \"kr\";#,0 \"kr\""
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Average Starting Bid SEK"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Average Starting Bid SEK",
+              "nativeQueryRef": "Average starting bid (SEK)",
+              "displayName": "Average starting bid (SEK)",
+              "format": "#,0 \"kr\";-#,0 \"kr\";#,0 \"kr\""
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_AUCTIONS"
+                    }
+                  },
+                  "Property": "Pricing Gap %"
+                }
+              },
+              "queryRef": "FCT_AUCTIONS.Pricing Gap %",
+              "nativeQueryRef": "Pricing gap %",
+              "displayName": "Pricing gap %",
+              "format": "0 %;-0 %;0 %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_AUCTIONS"
+                  }
+                },
+                "Property": "Pricing Gap %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'maxColor'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'minColor'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_AUCTIONS.Total Unique Items"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "FCT_AUCTIONS.Pricing Gap %"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "SelectRef": {
+                          "ExpressionName": "FCT_AUCTIONS.Pricing Gap %"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'minColor'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'maxColor'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "FCT_AUCTIONS.Pricing Gap %"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "468.3855248087488D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_HOUSES.HOUSE_NAME"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "338.8491875245149D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_AUCTIONS.Total Unique Items"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "347.35919558779045D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_AUCTIONS.Average Estimate SEK"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "319.5961536771885D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_AUCTIONS.Average Starting Bid SEK"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "364.2755750975481D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_AUCTIONS.Pricing Gap %"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

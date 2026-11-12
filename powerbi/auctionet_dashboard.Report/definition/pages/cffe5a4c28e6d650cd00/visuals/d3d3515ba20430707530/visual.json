@@ -1,0 +1,406 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d3d3515ba20430707530",
+  "position": {
+    "x": 0,
+    "y": 168.38577478256911,
+    "z": 1000,
+    "height": 418.60388871180731,
+    "width": 778.9809207231001,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "ITEM_ID"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.ITEM_ID",
+              "nativeQueryRef": "ITEM_ID",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "Engagement Contribution"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.Engagement Contribution",
+              "nativeQueryRef": "Engagement Contribution",
+              "format": "0.000"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "Category Contribution"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.Category Contribution",
+              "nativeQueryRef": "Category Contribution",
+              "format": "0.000"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "House Contribution"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.House Contribution",
+              "nativeQueryRef": "House Contribution",
+              "format": "0.000"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                  }
+                },
+                "Property": "Engagement Contribution"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "totals": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Priority Score Breakdown - Worked Example'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4540005c8da079b105cb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "ITEM_ID"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "ITEM_ID"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Aggregation": {
+                            "Expression": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "PRIORITISATION_SCORE"
+                              }
+                            },
+                            "Function": 4
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 1
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "f",
+              "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "ITEM_ID"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "a6db03db35601d15cb0a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "Engagement Contribution"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d61b43b410b86dddab4d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "Category Contribution"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2549c9d65e65ed7aae00",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "House Contribution"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "28253b9cc3482e15d59e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "ENDS_AT"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "ENDS_AT"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "Now": {}
+                          },
+                          "Amount": 1,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "DateAdd": {
+                                  "Expression": {
+                                    "Now": {}
+                                  },
+                                  "Amount": 1,
+                                  "TimeUnit": 0
+                                }
+                              },
+                              "Amount": -1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": 1,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a29ebe8d4887b7e4c97e",
+  "position": {
+    "x": 171.66666666666669,
+    "y": 0,
+    "z": 1000,
+    "height": 120,
+    "width": 161.66666666666669,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_BIDS"
+                    }
+                  },
+                  "Property": "Items with Bids"
+                }
+              },
+              "queryRef": "FCT_BIDS.Items with Bids",
+              "nativeQueryRef": "Items with Bids"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_BIDS"
+                  }
+                },
+                "Property": "Items with Bids"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_BIDS.Items with Bids"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

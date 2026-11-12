@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "0a290805c2a135157884",
+  "position": {
+    "x": 333.33333333333337,
+    "y": 0,
+    "z": 2000,
+    "height": 120,
+    "width": 236.66666666666669,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_BIDS"
+                    }
+                  },
+                  "Property": "Bid Activity Rate"
+                }
+              },
+              "queryRef": "FCT_BIDS.Bid Activity Rate",
+              "nativeQueryRef": "Bid Activity Rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_BIDS"
+                  }
+                },
+                "Property": "Bid Activity Rate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b05fb2e821790b9698d4",
+  "position": {
+    "x": 0,
+    "y": 461.09375711488548,
+    "z": 1000,
+    "height": 616.88994125950546,
+    "width": 959.95628614361829,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "ITEM_ID"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.ITEM_ID",
+              "nativeQueryRef": "Item ID:",
+              "active": true,
+              "displayName": "Item ID:"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "MAIN_CATEGORY_NAME"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(FCT_ACTIVE_ITEM_PRIORITISATION.MAIN_CATEGORY_NAME)",
+              "nativeQueryRef": "Category:",
+              "displayName": "Category:"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "AUCTION_HOUSE"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(FCT_ACTIVE_ITEM_PRIORITISATION.AUCTION_HOUSE)",
+              "nativeQueryRef": "Auction House:",
+              "displayName": "Auction House:"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "PRIORITISATION_RANK"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_RANK)",
+              "nativeQueryRef": "Priority Rank:",
+              "displayName": "Priority Rank:",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "CATEGORY_PCT_ABOVE_ESTIMATE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CATEGORY_PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "Medelvärde på CATEGORY_PCT_ABOVE_ESTIMATE",
+              "displayName": "Historical Category Performance:",
+              "format": "0.0 %;-0.0 %;0.0 %"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "HOUSE_PCT_ABOVE_ESTIMATE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.HOUSE_PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "Medelvärde på HOUSE_PCT_ABOVE_ESTIMATE",
+              "displayName": "Historical House Performance:",
+              "format": "0.0 %;-0.0 %;0.0 %"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "CATEGORY_ENDED_ITEMS"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CATEGORY_ENDED_ITEMS)",
+              "nativeQueryRef": "Medelvärde på CATEGORY_ENDED_ITEMS",
+              "displayName": "Category Sample Size:",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "HOUSE_ENDED_ITEMS"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.HOUSE_ENDED_ITEMS)",
+              "nativeQueryRef": "Medelvärde på HOUSE_ENDED_ITEMS",
+              "displayName": "House Sample Size:",
+              "format": "0"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "CURRENT_BID_COUNT"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CURRENT_BID_COUNT)",
+              "nativeQueryRef": "Current Bids:",
+              "active": true,
+              "displayName": "Current Bids:",
+              "format": "0"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                        }
+                      },
+                      "Property": "PRIORITISATION_SCORE"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_SCORE)",
+              "nativeQueryRef": "Priority Score:",
+              "displayName": "Priority Score:",
+              "format": "0.000"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Current Bids'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Priority Score'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Current Bids vs Priority Score'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

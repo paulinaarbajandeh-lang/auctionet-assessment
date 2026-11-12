@@ -1,0 +1,384 @@
+table FCT_ACTIVE_ITEM_PRIORITISATION
+	lineageTag: 954557a8-20be-4022-ba02-b890a0ccc35b
+
+	measure 'Shared Top 100' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(FCT_ACTIVE_ITEM_PRIORITISATION[ITEM_ID]),
+			    FILTER(
+			        ALL(FCT_ACTIVE_ITEM_PRIORITISATION),
+			        FCT_ACTIVE_ITEM_PRIORITISATION[BID_COUNT_RANK] <= 100
+			            && FCT_ACTIVE_ITEM_PRIORITISATION[PRIORITISATION_RANK] <= 100
+			    )
+			)
+		formatString: 0
+		lineageTag: fc5283aa-13a6-4050-af2e-25e5b4d3d263
+
+	measure 'Ranking-Specific Top 100' =
+			
+			100 - [Shared Top 100]
+		formatString: 0
+		lineageTag: eda568d8-986b-4f6b-8dd3-f99400c85185
+
+	measure 'Hours to Close' =
+			
+			VAR EndTimeUTC =
+			    SELECTEDVALUE(FCT_ACTIVE_ITEM_PRIORITISATION[ENDS_AT])
+			RETURN
+			    IF(
+			        NOT ISBLANK(EndTimeUTC),
+			        ROUND(
+			            (EndTimeUTC - UTCNOW()) * 24,
+			            1
+			        )
+			    )
+		lineageTag: eb85bcd4-6b5e-443f-8ea5-1b8d5a56b7c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Engagement Contribution' =
+			
+			SELECTEDVALUE(
+			    FCT_ACTIVE_ITEM_PRIORITISATION[ENGAGEMENT_SCORE]
+			) * 0.50
+		lineageTag: 6dd43cba-1248-407c-8d82-f8c68bba53ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Category Contribution' =
+			
+			SELECTEDVALUE(
+			    FCT_ACTIVE_ITEM_PRIORITISATION[CATEGORY_PCT_ABOVE_ESTIMATE]
+			)
+			*
+			SELECTEDVALUE(
+			    FCT_ACTIVE_ITEM_PRIORITISATION[CATEGORY_CONFIDENCE]
+			)
+			* 0.25
+		lineageTag: 7de2ce0d-0ca0-4c2a-b6da-c5c45ea86a44
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'House Contribution' =
+			
+			SELECTEDVALUE(
+			    FCT_ACTIVE_ITEM_PRIORITISATION[HOUSE_PCT_ABOVE_ESTIMATE]
+			)
+			*
+			SELECTEDVALUE(
+			    FCT_ACTIVE_ITEM_PRIORITISATION[HOUSE_CONFIDENCE]
+			)
+			* 0.25
+		lineageTag: aaabf597-fa11-497f-980f-61fcda8c158a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ITEM_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 5389cfb6-5319-49d8-b3e1-222ead7d56e2
+		summarizeBy: none
+		sourceColumn: ITEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPANY_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: ad135e92-a0ff-48b1-a4e5-b56cc00557d5
+		summarizeBy: none
+		sourceColumn: COMPANY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 50729a49-ac34-4e3a-8ac5-69dfc85a734b
+		summarizeBy: none
+		sourceColumn: CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAIN_CATEGORY_ID
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: d4c1baf7-9812-4ff6-be39-6b7dcc01d944
+		summarizeBy: none
+		sourceColumn: MAIN_CATEGORY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAIN_CATEGORY_NAME
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 09d2c399-9e8d-4832-9a92-2b73df454da9
+		summarizeBy: none
+		sourceColumn: MAIN_CATEGORY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUCTION_HOUSE
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: dcb14fb1-e7b9-49a5-8ef8-3115caf86900
+		summarizeBy: none
+		sourceColumn: AUCTION_HOUSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATE_SEK
+		dataType: double
+		sourceProviderType: decimal(38, 2)
+		lineageTag: 581602a2-77f5-4912-ae7a-bb17ba762a29
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_SEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column STARTING_BID_AMOUNT_SEK
+		dataType: double
+		sourceProviderType: decimal(38, 2)
+		lineageTag: 05935e33-19ac-42ab-b762-30ff56c5701e
+		summarizeBy: sum
+		sourceColumn: STARTING_BID_AMOUNT_SEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CURRENT_BID_COUNT
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: c2d4f91e-45b4-4e84-9edb-1f3e75d88c3d
+		summarizeBy: sum
+		sourceColumn: CURRENT_BID_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENGAGEMENT_SCORE
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 5fdbf7dd-ef6b-4564-bb07-312fda097f17
+		summarizeBy: sum
+		sourceColumn: ENGAGEMENT_SCORE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORY_ENDED_ITEMS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: d14810bc-01c0-4136-9110-b5360a20da7a
+		summarizeBy: sum
+		sourceColumn: CATEGORY_ENDED_ITEMS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORY_MEDIAN_BID_COUNT
+		dataType: double
+		sourceProviderType: decimal(38, 3)
+		lineageTag: 40db3d8d-8bc7-4549-9d95-16fe6fb2d713
+		summarizeBy: sum
+		sourceColumn: CATEGORY_MEDIAN_BID_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORY_MEDIAN_HAMMER_VS_ESTIMATE_PCT
+		dataType: double
+		sourceProviderType: decimal(38, 11)
+		lineageTag: d8264983-a627-4070-95ec-ac19631f1ca4
+		summarizeBy: sum
+		sourceColumn: CATEGORY_MEDIAN_HAMMER_VS_ESTIMATE_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORY_PCT_ABOVE_ESTIMATE
+		dataType: double
+		sourceProviderType: decimal(19, 6)
+		lineageTag: f3d17948-3758-4a75-9dcb-8eabb8ba5867
+		summarizeBy: sum
+		sourceColumn: CATEGORY_PCT_ABOVE_ESTIMATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORY_CONFIDENCE
+		dataType: double
+		sourceProviderType: decimal(3, 2)
+		lineageTag: af6da329-0654-41fa-9a6e-004a36253b68
+		summarizeBy: sum
+		sourceColumn: CATEGORY_CONFIDENCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HOUSE_ENDED_ITEMS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: 5d777bf6-6b96-4587-af20-4f4f6212300d
+		summarizeBy: sum
+		sourceColumn: HOUSE_ENDED_ITEMS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HOUSE_MEDIAN_BID_COUNT
+		dataType: double
+		sourceProviderType: decimal(38, 3)
+		lineageTag: 9e8c5928-a8f0-4312-8057-f5c559fa5a30
+		summarizeBy: sum
+		sourceColumn: HOUSE_MEDIAN_BID_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HOUSE_MEDIAN_HAMMER_VS_ESTIMATE_PCT
+		dataType: double
+		sourceProviderType: decimal(38, 11)
+		lineageTag: 363c457d-85ee-4b59-a9dc-a051ae168d82
+		summarizeBy: sum
+		sourceColumn: HOUSE_MEDIAN_HAMMER_VS_ESTIMATE_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HOUSE_PCT_ABOVE_ESTIMATE
+		dataType: double
+		sourceProviderType: decimal(19, 6)
+		lineageTag: b9301159-c81f-40f0-8de6-c2535ba754f7
+		summarizeBy: sum
+		sourceColumn: HOUSE_PCT_ABOVE_ESTIMATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HOUSE_CONFIDENCE
+		dataType: double
+		sourceProviderType: decimal(3, 2)
+		lineageTag: 31ffa64c-c41d-4ca7-aa75-23610ef641a0
+		summarizeBy: sum
+		sourceColumn: HOUSE_CONFIDENCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PRIORITISATION_SCORE
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 26722dc1-ad91-4222-a2a2-5da20a075630
+		summarizeBy: sum
+		sourceColumn: PRIORITISATION_SCORE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PRIORITISATION_RANK
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: 7d3be8f7-6197-4b89-b88c-98dae64bd108
+		summarizeBy: sum
+		sourceColumn: PRIORITISATION_RANK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BID_COUNT_RANK
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: 5cafe56c-da21-4122-a721-5d9577488e35
+		summarizeBy: sum
+		sourceColumn: BID_COUNT_RANK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOP_100_GROUP
+		dataType: string
+		sourceProviderType: nvarchar(19)
+		lineageTag: bffea9a0-8dfa-4643-a77c-484c3edebe00
+		summarizeBy: none
+		sourceColumn: TOP_100_GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDS_AT
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c79fa85a-ad5c-4ec7-b0df-4c47ab0e699a
+		summarizeBy: none
+		sourceColumn: ENDS_AT
+
+		annotation SummarizationSetBy = Automatic
+
+	column PUBLISHED_AT
+		dataType: dateTime
+		formatString: Short Time
+		sourceProviderType: datetime2
+		lineageTag: 1d36a662-8dcd-4f27-b1b1-ce3cfe779bcf
+		summarizeBy: none
+		sourceColumn: PUBLISHED_AT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDS_AT_STOCKHOLM
+		dataType: dateTime
+		formatString: yyyy-mm-dd "kl "h:nn
+		sourceProviderType: datetime2
+		lineageTag: 64eef610-3e58-4d69-bb91-375872b8832f
+		summarizeBy: none
+		sourceColumn: ENDS_AT_STOCKHOLM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column PUBLISHED_AT_STOCKHOLM
+		dataType: dateTime
+		formatString: yyyy-mm-dd "kl "h:nn
+		sourceProviderType: datetime2
+		lineageTag: 3114c429-08e3-4500-a26e-80b229636529
+		summarizeBy: none
+		sourceColumn: PUBLISHED_AT_STOCKHOLM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition FCT_ACTIVE_ITEM_PRIORITISATION = m
+		mode: directQuery
+		source =
+				let
+				    Källa = Snowflake.Databases("ZOIVWMV-HN74219.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DBT_AUCTIONET_Database = Källa{[Name="DBT_AUCTIONET",Kind="Database"]}[Data],
+				    DBT_PAULINAARBAJANDEHLANG_MARTS_Schema = DBT_AUCTIONET_Database{[Name="DBT_PAULINAARBAJANDEHLANG_MARTS",Kind="Schema"]}[Data],
+				    FCT_ACTIVE_ITEM_PRIORITISATION_Table = DBT_PAULINAARBAJANDEHLANG_MARTS_Schema{[Name="FCT_ACTIVE_ITEM_PRIORITISATION",Kind="Table"]}[Data]
+				in
+				    FCT_ACTIVE_ITEM_PRIORITISATION_Table
+
+	annotation PBI_NavigationStepName = Navigering
+
+	annotation PBI_ResultType = Table
+

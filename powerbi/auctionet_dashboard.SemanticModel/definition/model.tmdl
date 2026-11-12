@@ -1,0 +1,27 @@
+model Model
+	culture: sv-SE
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: sv-SE
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DIM_HOUSES","DIM_ITEMS","FCT_AUCTIONS","DIM_CATEGORIES","FCT_BIDS","FCT_ACTIVE_ITEM_PRIORITISATION","Top100_Comparison","INT_HISTORICAL_CATEGORY_PERFORMANCE","INT_HISTORICAL_HOUSE_PERFORMANCE"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DIM_HOUSES
+ref table DIM_ITEMS
+ref table FCT_AUCTIONS
+ref table DIM_CATEGORIES
+ref table FCT_BIDS
+ref table FCT_ACTIVE_ITEM_PRIORITISATION
+ref table Top100_Comparison
+ref table INT_HISTORICAL_CATEGORY_PERFORMANCE
+ref table INT_HISTORICAL_HOUSE_PERFORMANCE
+
+ref cultureInfo sv-SE
+

@@ -1,0 +1,20 @@
+relationship 11171c41-c2f8-74f9-4857-54ac8ced189c
+	fromColumn: FCT_AUCTIONS.ITEM_ID
+	toColumn: DIM_ITEMS.ITEM_ID
+
+relationship b0f6889c-b8a6-b1a9-d212-9152600a49e9
+	fromColumn: FCT_AUCTIONS.COMPANY_ID
+	toColumn: DIM_HOUSES.COMPANY_ID
+
+relationship 7a1f981e-3250-7ed9-8825-cec301796779
+	fromColumn: FCT_AUCTIONS.CATEGORY_ID
+	toColumn: DIM_CATEGORIES.CATEGORY_ID
+
+relationship 691bc9e2-3432-6489-43b0-2cbfddf5d10f
+	fromColumn: FCT_BIDS.ITEM_ID
+	toColumn: DIM_ITEMS.ITEM_ID
+
+relationship 45787b92-6d22-3c67-d4e2-c749e29f2669
+	fromColumn: FCT_ACTIVE_ITEM_PRIORITISATION.ITEM_ID
+	toColumn: DIM_ITEMS.ITEM_ID
+

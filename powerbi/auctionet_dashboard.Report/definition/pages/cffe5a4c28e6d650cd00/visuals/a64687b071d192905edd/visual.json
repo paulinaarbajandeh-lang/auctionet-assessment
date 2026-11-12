@@ -1,0 +1,972 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a64687b071d192905edd",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 169.01408450704227,
+    "width": 1919.7183098591549,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "PRIORITISATION_RANK"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_RANK)",
+              "nativeQueryRef": "Priority Rank",
+              "displayName": "Priority Rank"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "BID_COUNT_RANK"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.BID_COUNT_RANK)",
+              "nativeQueryRef": "Bid Count Rank",
+              "displayName": "Bid Count Rank"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "ITEM_ID"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.ITEM_ID",
+              "nativeQueryRef": "Item ID",
+              "displayName": "Item ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "CURRENT_BID_COUNT"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CURRENT_BID_COUNT)",
+              "nativeQueryRef": "Current Bids",
+              "displayName": "Current Bids"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "PRIORITISATION_SCORE"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_SCORE)",
+              "nativeQueryRef": "Priority Score",
+              "displayName": "Priority Score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "MAIN_CATEGORY_NAME"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.MAIN_CATEGORY_NAME",
+              "nativeQueryRef": "Category",
+              "displayName": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "AUCTION_HOUSE"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.AUCTION_HOUSE",
+              "nativeQueryRef": "Auction House",
+              "displayName": "Auction House"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "CATEGORY_PCT_ABOVE_ESTIMATE"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CATEGORY_PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "Historical Category %",
+              "displayName": "Historical Category %",
+              "format": "0 %;-0 %;0 %"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "HOUSE_PCT_ABOVE_ESTIMATE"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.HOUSE_PCT_ABOVE_ESTIMATE)",
+              "nativeQueryRef": "Historical Auction House %",
+              "displayName": "Historical Auction House %",
+              "format": "0 %;-0 %;0 %"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "CATEGORY_ENDED_ITEMS"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CATEGORY_ENDED_ITEMS)",
+              "nativeQueryRef": "Historical Category Sales",
+              "displayName": "Historical Category Sales",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "HOUSE_ENDED_ITEMS"
+                }
+              },
+              "queryRef": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.HOUSE_ENDED_ITEMS)",
+              "nativeQueryRef": "Historical House Sales",
+              "displayName": "Historical House Sales",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "ENDS_AT_STOCKHOLM"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.ENDS_AT_STOCKHOLM",
+              "nativeQueryRef": "Ends At (CET/CEST)",
+              "displayName": "Ends At (CET/CEST)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "PUBLISHED_AT_STOCKHOLM"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.PUBLISHED_AT_STOCKHOLM",
+              "nativeQueryRef": "Published At (CET/CEST)",
+              "displayName": "Published At (CET/CEST)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                    }
+                  },
+                  "Property": "Hours to Close"
+                }
+              },
+              "queryRef": "FCT_ACTIVE_ITEM_PRIORITISATION.Hours to Close",
+              "nativeQueryRef": "Hours to Close"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+                  }
+                },
+                "Property": "CATEGORY_ENDED_ITEMS"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_RANK)"
+          }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_SCORE)"
+          }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CURRENT_BID_COUNT)"
+          }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.BID_COUNT_RANK)"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100.24512641950524D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.HOUSE_ENDED_ITEMS)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114.80926485443489D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CATEGORY_ENDED_ITEMS)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119.28790447989326D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CATEGORY_PCT_ABOVE_ESTIMATE)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "138.66688013002198D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.HOUSE_PCT_ABOVE_ESTIMATE)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.11056768006162D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_RANK)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.76086932290279D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.BID_COUNT_RANK)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.71420882902319D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.CURRENT_BID_COUNT)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111.63975304819705D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FCT_ACTIVE_ITEM_PRIORITISATION.PRIORITISATION_SCORE)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "246.54127410168923D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_ACTIVE_ITEM_PRIORITISATION.AUCTION_HOUSE"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "194.5739083766328D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_ACTIVE_ITEM_PRIORITISATION.ENDS_AT_STOCKHOLM"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "97.56078502704901D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_ACTIVE_ITEM_PRIORITISATION.Hours to Close"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101.39746705579415D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_ACTIVE_ITEM_PRIORITISATION.ITEM_ID"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "181.84931629564312D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_ACTIVE_ITEM_PRIORITISATION.MAIN_CATEGORY_NAME"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.2
+                    }
+                  }
+                }
+              }
+            },
+            "gridVerticalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Worked Example - Why Item --- Ranks Higher'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c3011c00dd261308bdac",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "ITEM_ID"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "ITEM_ID"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Aggregation": {
+                            "Expression": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "PRIORITISATION_SCORE"
+                              }
+                            },
+                            "Function": 4
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 1
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "f",
+              "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "ITEM_ID"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "286fbdf4dd5340eb9b62",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "ENDS_AT"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "ENDS_AT"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "Now": {}
+                          },
+                          "Amount": 1,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "DateAdd": {
+                                  "Expression": {
+                                    "Now": {}
+                                  },
+                                  "Amount": 1,
+                                  "TimeUnit": 0
+                                }
+                              },
+                              "Amount": -1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": 1,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "978d338a92de3a62a487",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "PRIORITISATION_RANK"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "86cbc41097310e56c99c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "BID_COUNT_RANK"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e5c7994a3aa08e87c227",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "CURRENT_BID_COUNT"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "213c5d76b0a0051b2de0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "PRIORITISATION_SCORE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c0ab1ea9e271c0dd0e8e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "MAIN_CATEGORY_NAME"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "315a4492e80a9b9a0aac",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "AUCTION_HOUSE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fb535fd97d6d6ae20d7c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "CATEGORY_PCT_ABOVE_ESTIMATE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b12f57479c7a9e77c767",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "HOUSE_PCT_ABOVE_ESTIMATE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1c6b08696111e81d2a36",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "CATEGORY_ENDED_ITEMS"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0c84316e70020b18dc31",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "HOUSE_ENDED_ITEMS"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e3616edf6978757dabcb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "ENDS_AT_STOCKHOLM"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "685fe0bb2e1600e26b28",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "PUBLISHED_AT_STOCKHOLM"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c1ea5aac7d2d620338b9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_ACTIVE_ITEM_PRIORITISATION"
+              }
+            },
+            "Property": "Hours to Close"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

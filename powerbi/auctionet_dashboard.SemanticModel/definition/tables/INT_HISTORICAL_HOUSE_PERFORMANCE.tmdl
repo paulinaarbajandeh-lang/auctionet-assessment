@@ -1,0 +1,100 @@
+table INT_HISTORICAL_HOUSE_PERFORMANCE
+	lineageTag: a550749f-2a93-45ef-992c-7e0a61fb3a6e
+
+	column COMPANY_ID
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: cbca23f1-0a94-4c04-a982-dcb5e0d56293
+		summarizeBy: count
+		sourceColumn: COMPANY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AUCTION_HOUSE
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 12a04831-8f16-4146-9812-c4f77e396d4f
+		summarizeBy: none
+		sourceColumn: AUCTION_HOUSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDED_ITEMS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: e13446c7-6e40-43fb-932a-a94fface8ddf
+		summarizeBy: sum
+		sourceColumn: ENDED_ITEMS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_BID_COUNT
+		dataType: double
+		sourceProviderType: decimal(38, 6)
+		lineageTag: ba8e31ce-f3f3-4c1b-851e-68b7aef1cba6
+		summarizeBy: sum
+		sourceColumn: AVG_BID_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MEDIAN_BID_COUNT
+		dataType: double
+		sourceProviderType: decimal(38, 3)
+		lineageTag: 26406bb4-769f-463d-ad16-a1c5eab47d1a
+		summarizeBy: sum
+		sourceColumn: MEDIAN_BID_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_HAMMER_VS_ESTIMATE_PCT
+		dataType: double
+		sourceProviderType: decimal(38, 12)
+		lineageTag: b85cac73-747e-4a8f-80cc-3e28532f5af9
+		summarizeBy: sum
+		sourceColumn: AVG_HAMMER_VS_ESTIMATE_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MEDIAN_HAMMER_VS_ESTIMATE_PCT
+		dataType: double
+		sourceProviderType: decimal(38, 11)
+		lineageTag: d1177fea-14f4-4015-ad39-24a73b4e6d2a
+		summarizeBy: sum
+		sourceColumn: MEDIAN_HAMMER_VS_ESTIMATE_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PCT_ABOVE_ESTIMATE
+		dataType: double
+		sourceProviderType: decimal(19, 6)
+		lineageTag: d27a360a-b7df-44e9-a5f4-7f31191b774e
+		summarizeBy: sum
+		sourceColumn: PCT_ABOVE_ESTIMATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition INT_HISTORICAL_HOUSE_PERFORMANCE = m
+		mode: directQuery
+		source =
+				let
+				    Källa = Snowflake.Databases("ZOIVWMV-HN74219.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DBT_AUCTIONET_Database = Källa{[Name="DBT_AUCTIONET",Kind="Database"]}[Data],
+				    DBT_PAULINAARBAJANDEHLANG_INTERMEDIATE_Schema = DBT_AUCTIONET_Database{[Name="DBT_PAULINAARBAJANDEHLANG_INTERMEDIATE",Kind="Schema"]}[Data],
+				    INT_HISTORICAL_HOUSE_PERFORMANCE_View = DBT_PAULINAARBAJANDEHLANG_INTERMEDIATE_Schema{[Name="INT_HISTORICAL_HOUSE_PERFORMANCE",Kind="View"]}[Data]
+				in
+				    INT_HISTORICAL_HOUSE_PERFORMANCE_View
+

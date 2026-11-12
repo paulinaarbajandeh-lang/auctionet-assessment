@@ -1,0 +1,622 @@
+cultureInfo sv-SE
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "dim_houses.house_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_HOUSES",
+			          "ConceptualProperty": "HOUSE_NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Auction house:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Auction house": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Auctin house:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_auctions.pricing_gap_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_AUCTIONS",
+			          "ConceptualProperty": "Pricing Gap %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Pricing gap %:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Pricing gap %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_auctions.average_estimate_sek": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_AUCTIONS",
+			          "ConceptualProperty": "Average Estimate SEK"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average Estimate (SEK)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Average estimate (SEK):": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_auctions.average_starting_bid_sek": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_AUCTIONS",
+			          "ConceptualProperty": "Average Starting Bid SEK"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average starting bid (SEK):": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Average Starting Bid (SEK)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_auctions.currency": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_AUCTIONS",
+			          "ConceptualProperty": "CURRENCY"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "dim_categories.category_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_CATEGORIES",
+			          "ConceptualProperty": "CATEGORY_NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Subcategory": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_categories.parent_category_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_CATEGORIES",
+			          "ConceptualProperty": "PARENT_CATEGORY_ID"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "dim_categories.parent_category_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_CATEGORIES",
+			          "ConceptualProperty": "PARENT_CATEGORY_NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Main category": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Main category:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_houses.country": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_HOUSES",
+			          "ConceptualProperty": "COUNTRY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Country": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_auctions.total_unique_items": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_AUCTIONS",
+			          "ConceptualProperty": "Total Unique Items"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total unique items:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total unique items": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.prioritisation_rank": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "PRIORITISATION_RANK"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Model Priority Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Priority Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.item_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "ITEM_ID"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Item ID": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Item ID:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.current_bid_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "CURRENT_BID_COUNT"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Current Bids": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.prioritisation_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "PRIORITISATION_SCORE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Model Priority Score (0–1)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Priority Score": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.main_category_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "MAIN_CATEGORY_NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Category": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.auction_house": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "AUCTION_HOUSE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Auction House": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.bid_count_rank": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "BID_COUNT_RANK"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Current Bid Count Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Bid Count Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.category_pct_above_estimate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "CATEGORY_PCT_ABOVE_ESTIMATE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Historical Category %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.house_pct_above_estimate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "HOUSE_PCT_ABOVE_ESTIMATE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Historical Auction House %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.category_ended_items": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "CATEGORY_ENDED_ITEMS"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Historical Category Sales": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.house_ended_items": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "HOUSE_ENDED_ITEMS"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Historical House Sales": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.ends_at_stockholm": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "ENDS_AT_STOCKHOLM"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Ends At (CET/CEST)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_active_item_prioritisation.published_at_stockholm": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FCT_ACTIVE_ITEM_PRIORITISATION",
+			          "ConceptualProperty": "PUBLISHED_AT_STOCKHOLM"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Published At (CET/CEST)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "int_historical_category_performance.main_category_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "INT_HISTORICAL_CATEGORY_PERFORMANCE",
+			          "ConceptualProperty": "MAIN_CATEGORY_NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Category:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "int_historical_house_performance.auction_house": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "INT_HISTORICAL_HOUSE_PERFORMANCE",
+			          "ConceptualProperty": "AUCTION_HOUSE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Auction House:": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+
